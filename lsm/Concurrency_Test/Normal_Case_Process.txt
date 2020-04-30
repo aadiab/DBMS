@@ -1,0 +1,144 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LOST UPDATE 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+W-E (write_proc.txt, erase_proc.txt)
+Expected: Write gets the lock, executes, then release it's lock. Erase will come in, get it's lock, execute and release it lock. Both finish executing before commit time. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_13 Lock Type: P-WRITE
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Process Release Result: NONE Expected: NONE 
+TXID: 1::E TESTERER 13
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-ERASE
+Acquire Lock data: TESTERER_13 Lock Type: P-ERASE
+LSM Erasing...
+Pushing record: ID: 13 Name:  Phone: 
+(N: 1) Inserting record: ID: 13 Name:  Phone: 
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Both operations execute as soon as they enter the scheduler so no loss update error. PASSED
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+DIRTY READS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+W-R (write_proc.txt, read_proc.txt)
+Expected: Write gets the lock, executes, then release it's lock. Read does the same. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_13 Lock Type: P-WRITE
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Process Release Result: NONE Expected: NONE 
+TXID: 1::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_13 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 13
+Found record:
+	ID: 13 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Both operations execute as soon as they enter the scheduler. Since all write operations for process are considered committed the read is not a dirty read. PASSED
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+NON-REPEATABLE READS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+R-W-R (nonrepeatable_read_proc.txt, write_proc.txt)
+Expected: The second read for T0 should have a different value. In Process mode nonrepeatable reads could occur. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::R TESTERER 13
+Called RLOCK
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_13 Lock Type: P-READ
+LSM Reading...
+Table not found. Aborting.
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Process Release Result: NONE Expected: NONE 
+TXID: 1::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_13 Lock Type: P-WRITE
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+TXID: 0::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_13 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 13
+Found record:
+	ID: 13 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Process Release Result: NONE Expected: NONE 
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+In Process mode nonrepeatable reads is possible. That's why with the second read on T0 we have a different value than what was read in the first read. PASSED
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

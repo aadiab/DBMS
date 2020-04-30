@@ -1,0 +1,5357 @@
+Multiple Read Write Read Interactions (Transaction Process Interaction)
+
+Expected: All the reads from the multiple transaction will run first then the writes will run. 
+Actaul: Since reads are allowed to run in parallel and writes are blocked by reads, all the reads execute first then the writes execute. So what ever a transaction reads will be the same for multiple reads. T0's read request blocks P1's write request but allows T2's read request etc.
+
+Executed: ./myPTA roundrobin 1000 100 Concurrency_Test/Benchmark_Tests/Test24/test1.txt Concurrency_Test/Benchmark_Tests/Test24/test2.txt Concurrency_Test/Benchmark_Tests/Test24/test3.txt Concurrency_Test/Benchmark_Tests/Test24/test4.txt Concurrency_Test/Benchmark_Tests/Test24/test5.txt Concurrency_Test/Benchmark_Tests/Test24/test6.txt Concurrency_Test/Benchmark_Tests/Test24/test7.txt Concurrency_Test/Benchmark_Tests/Test24/test8.txt Concurrency_Test/Benchmark_Tests/Test24/test9.txt Concurrency_Test/Benchmark_Tests/Test24/test10.txt 
+
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+BEGIN Adding txid 2 to file index 2
+BEGIN Adding txid 3 to file index 3
+BEGIN Adding txid 4 to file index 4
+BEGIN Adding txid 5 to file index 5
+BEGIN Adding txid 6 to file index 6
+BEGIN Adding txid 7 to file index 7
+BEGIN Adding txid 8 to file index 8
+BEGIN Adding txid 9 to file index 9
+TXID: 0::R TESTERER 1
+Called RLOCK
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: P-WRITE
+TXID: 2::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: P-WRITE
+TXID: 4::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: P-WRITE
+TXID: 6::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: P-WRITE
+TXID: 8::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: P-WRITE
+Running DeadLock Detection after command 20processed
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Lock is held by: 0
+Add Edge between 1and 0
+adding new 0 to the graph
+Add Edge between 3and 0
+Add Edge between 5and 0
+Add Edge between 7and 0
+Add Edge between 9and 0
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Lock is held by: 0
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 0 
+Adjacents:
+1 : 8 6 4 2 0 
+8 : 
+3 : 8 6 4 2 0 
+5 : 8 6 4 2 0 
+7 : 8 6 4 2 0 
+9 : 8 6 4 2 0 
+6 : 
+4 : 
+2 : 
+0 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (2, John, 412-111-2222)
+TXID: 2::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (2, John, 412-111-2222)
+TXID: 4::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (2, John, 412-111-2222)
+TXID: 6::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (2, John, 412-111-2222)
+TXID: 8::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (2, John, 412-111-2222)
+TXID: 0::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (3, John, 412-111-2222)
+TXID: 2::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (3, John, 412-111-2222)
+TXID: 4::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (3, John, 412-111-2222)
+TXID: 6::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (3, John, 412-111-2222)
+TXID: 8::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (3, John, 412-111-2222)
+Running DeadLock Detection after command 40processed
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Lock is held by: 0
+Add Edge between 1and 0
+adding new 0 to the graph
+Add Edge between 3and 0
+Add Edge between 5and 0
+Add Edge between 7and 0
+Add Edge between 9and 0
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Lock is held by: 0
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 0 
+Adjacents:
+1 : 8 6 4 2 0 
+8 : 
+3 : 8 6 4 2 0 
+5 : 8 6 4 2 0 
+7 : 8 6 4 2 0 
+9 : 8 6 4 2 0 
+6 : 
+4 : 
+2 : 
+0 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (4, John, 412-111-2222)
+TXID: 2::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (4, John, 412-111-2222)
+TXID: 4::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (4, John, 412-111-2222)
+TXID: 6::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (4, John, 412-111-2222)
+TXID: 8::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (4, John, 412-111-2222)
+TXID: 0::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (5, John, 412-111-2222)
+TXID: 2::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (5, John, 412-111-2222)
+TXID: 4::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (5, John, 412-111-2222)
+TXID: 6::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (5, John, 412-111-2222)
+TXID: 8::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (5, John, 412-111-2222)
+Running DeadLock Detection after command 60processed
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Lock is held by: 0
+Add Edge between 1and 0
+adding new 0 to the graph
+Add Edge between 3and 0
+Add Edge between 5and 0
+Add Edge between 7and 0
+Add Edge between 9and 0
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Lock is held by: 0
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 0 
+Adjacents:
+1 : 8 6 4 2 0 
+8 : 
+3 : 8 6 4 2 0 
+5 : 8 6 4 2 0 
+7 : 8 6 4 2 0 
+9 : 8 6 4 2 0 
+6 : 
+4 : 
+2 : 
+0 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (6, John, 412-111-2222)
+TXID: 2::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (6, John, 412-111-2222)
+TXID: 4::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (6, John, 412-111-2222)
+TXID: 6::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (6, John, 412-111-2222)
+TXID: 8::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (6, John, 412-111-2222)
+TXID: 0::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (7, John, 412-111-2222)
+TXID: 2::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (7, John, 412-111-2222)
+TXID: 4::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (7, John, 412-111-2222)
+TXID: 6::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (7, John, 412-111-2222)
+TXID: 8::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (7, John, 412-111-2222)
+Running DeadLock Detection after command 80processed
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Lock is held by: 0
+Add Edge between 1and 0
+adding new 0 to the graph
+Add Edge between 3and 0
+Add Edge between 5and 0
+Add Edge between 7and 0
+Add Edge between 9and 0
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Lock is held by: 0
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 0 
+Adjacents:
+1 : 8 6 4 2 0 
+8 : 
+3 : 8 6 4 2 0 
+5 : 8 6 4 2 0 
+7 : 8 6 4 2 0 
+9 : 8 6 4 2 0 
+6 : 
+4 : 
+2 : 
+0 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (8, John, 412-111-2222)
+TXID: 2::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (8, John, 412-111-2222)
+TXID: 4::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (8, John, 412-111-2222)
+TXID: 6::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (8, John, 412-111-2222)
+TXID: 8::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (8, John, 412-111-2222)
+TXID: 0::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (9, John, 412-111-2222)
+TXID: 2::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (9, John, 412-111-2222)
+TXID: 4::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (9, John, 412-111-2222)
+TXID: 6::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (9, John, 412-111-2222)
+TXID: 8::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (9, John, 412-111-2222)
+Running DeadLock Detection after command 100processed
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Lock is held by: 0
+Add Edge between 1and 0
+adding new 0 to the graph
+Add Edge between 3and 0
+Add Edge between 5and 0
+Add Edge between 7and 0
+Add Edge between 9and 0
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Lock is held by: 0
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 0 
+Adjacents:
+1 : 8 6 4 2 0 
+8 : 
+3 : 8 6 4 2 0 
+5 : 8 6 4 2 0 
+7 : 8 6 4 2 0 
+9 : 8 6 4 2 0 
+6 : 
+4 : 
+2 : 
+0 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (10, John, 412-111-2222)
+TXID: 2::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (10, John, 412-111-2222)
+TXID: 4::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (10, John, 412-111-2222)
+TXID: 6::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (10, John, 412-111-2222)
+TXID: 8::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (10, John, 412-111-2222)
+TXID: 0::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (11, John, 412-111-2222)
+TXID: 2::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (11, John, 412-111-2222)
+TXID: 4::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (11, John, 412-111-2222)
+TXID: 6::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (11, John, 412-111-2222)
+TXID: 8::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (11, John, 412-111-2222)
+Running DeadLock Detection after command 120processed
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Lock is held by: 0
+Add Edge between 1and 0
+adding new 0 to the graph
+Add Edge between 3and 0
+Add Edge between 5and 0
+Add Edge between 7and 0
+Add Edge between 9and 0
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Lock is held by: 0
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 0 
+Adjacents:
+1 : 8 6 4 2 0 
+8 : 
+3 : 8 6 4 2 0 
+5 : 8 6 4 2 0 
+7 : 8 6 4 2 0 
+9 : 8 6 4 2 0 
+6 : 
+4 : 
+2 : 
+0 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Lock is held by: 0
+Add Edge between 1and 0
+adding new 0 to the graph
+Add Edge between 3and 0
+Add Edge between 5and 0
+Add Edge between 7and 0
+Add Edge between 9and 0
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Lock is held by: 0
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 0 
+Adjacents:
+1 : 8 6 4 2 0 
+8 : 
+3 : 8 6 4 2 0 
+5 : 8 6 4 2 0 
+7 : 8 6 4 2 0 
+9 : 8 6 4 2 0 
+6 : 
+4 : 
+2 : 
+0 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 2::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Lock is held by: 0
+Add Edge between 1and 0
+adding new 0 to the graph
+Add Edge between 3and 0
+Add Edge between 5and 0
+Add Edge between 7and 0
+Add Edge between 9and 0
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Lock is held by: 0
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 0 
+Adjacents:
+1 : 8 6 4 2 0 
+8 : 
+3 : 8 6 4 2 0 
+5 : 8 6 4 2 0 
+7 : 8 6 4 2 0 
+9 : 8 6 4 2 0 
+6 : 
+4 : 
+2 : 
+0 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 4::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Lock is held by: 0
+Add Edge between 1and 0
+adding new 0 to the graph
+Add Edge between 3and 0
+Add Edge between 5and 0
+Add Edge between 7and 0
+Add Edge between 9and 0
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Lock is held by: 0
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 0 
+Adjacents:
+1 : 8 6 4 2 0 
+8 : 
+3 : 8 6 4 2 0 
+5 : 8 6 4 2 0 
+7 : 8 6 4 2 0 
+9 : 8 6 4 2 0 
+6 : 
+4 : 
+2 : 
+0 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 6::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Lock is held by: 0
+Add Edge between 1and 0
+adding new 0 to the graph
+Add Edge between 3and 0
+Add Edge between 5and 0
+Add Edge between 7and 0
+Add Edge between 9and 0
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Lock is held by: 0
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 0 
+Adjacents:
+1 : 8 6 4 2 0 
+8 : 
+3 : 8 6 4 2 0 
+5 : 8 6 4 2 0 
+7 : 8 6 4 2 0 
+9 : 8 6 4 2 0 
+6 : 
+4 : 
+2 : 
+0 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 8::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Lock is held by: 0
+Add Edge between 1and 0
+adding new 0 to the graph
+Add Edge between 3and 0
+Add Edge between 5and 0
+Add Edge between 7and 0
+Add Edge between 9and 0
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Lock is held by: 0
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 0 
+Adjacents:
+1 : 8 6 4 2 0 
+8 : 
+3 : 8 6 4 2 0 
+5 : 8 6 4 2 0 
+7 : 8 6 4 2 0 
+9 : 8 6 4 2 0 
+6 : 
+4 : 
+2 : 
+0 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Running DeadLock Detection after command 140processed
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Lock is held by: 0
+Add Edge between 1and 0
+adding new 0 to the graph
+Add Edge between 3and 0
+Add Edge between 5and 0
+Add Edge between 7and 0
+Add Edge between 9and 0
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Lock is held by: 0
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 0 
+Adjacents:
+1 : 8 6 4 2 0 
+8 : 
+3 : 8 6 4 2 0 
+5 : 8 6 4 2 0 
+7 : 8 6 4 2 0 
+9 : 8 6 4 2 0 
+6 : 
+4 : 
+2 : 
+0 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Running DeadLock Detection after command 160processed
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 9
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Lock is held by: 0
+Add Edge between 1and 0
+adding new 0 to the graph
+Add Edge between 3and 0
+Add Edge between 5and 0
+Add Edge between 7and 0
+Add Edge between 9and 0
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Lock is held by: 0
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 0 
+Adjacents:
+1 : 8 6 4 2 0 
+8 : 
+3 : 8 6 4 2 0 
+5 : 8 6 4 2 0 
+7 : 8 6 4 2 0 
+9 : 8 6 4 2 0 
+6 : 
+4 : 
+2 : 
+0 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Running DeadLock Detection after command 180processed
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 9
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Lock is held by: 0
+Add Edge between 1and 0
+adding new 0 to the graph
+Add Edge between 3and 0
+Add Edge between 5and 0
+Add Edge between 7and 0
+Add Edge between 9and 0
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Lock is held by: 0
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 0 
+Adjacents:
+1 : 8 6 4 2 0 
+8 : 
+3 : 8 6 4 2 0 
+5 : 8 6 4 2 0 
+7 : 8 6 4 2 0 
+9 : 8 6 4 2 0 
+6 : 
+4 : 
+2 : 
+0 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 9
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Lock is held by: 0
+Add Edge between 1and 0
+adding new 0 to the graph
+Add Edge between 3and 0
+Add Edge between 5and 0
+Add Edge between 7and 0
+Add Edge between 9and 0
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Lock is held by: 0
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 0
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 0 
+Adjacents:
+1 : 8 6 4 2 0 
+8 : 
+3 : 8 6 4 2 0 
+5 : 8 6 4 2 0 
+7 : 8 6 4 2 0 
+9 : 8 6 4 2 0 
+6 : 
+4 : 
+2 : 
+0 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+COMMIT txid 0 from file index 0
+Release Rlock
+release lock transaction: 0
+Lock removed
+release lock transaction: 0
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+Lock removed
+release lock transaction: 0
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+Lock removed
+release lock transaction: 0
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+Lock removed
+release lock transaction: 0
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+Lock removed
+release lock transaction: 0
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+Lock removed
+release lock transaction: 0
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+Lock removed
+release lock transaction: 0
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+Lock removed
+release lock transaction: 0
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+Lock removed
+release lock transaction: 0
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+Lock removed
+release lock transaction: 0
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+Lock removed
+release lock transaction: 0
+Lock removed
+Handle result: NONE
+TXID: 2::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Processing Bucket: 9
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Lock is held by: 2
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 3and 2
+Add Edge between 5and 2
+Add Edge between 7and 2
+Add Edge between 9and 2
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 2
+Lock is held by: 1
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 2
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 2 
+Adjacents:
+1 : 8 6 4 2 
+8 : 
+3 : 8 6 4 2 
+5 : 8 6 4 2 
+7 : 8 6 4 2 
+9 : 8 6 4 2 
+6 : 
+4 : 
+2 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+COMMIT txid 2 from file index 2
+Release Rlock
+release lock transaction: 2
+Lock removed
+release lock transaction: 2
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+Lock removed
+release lock transaction: 2
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+Lock removed
+release lock transaction: 2
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+Lock removed
+release lock transaction: 2
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+Lock removed
+release lock transaction: 2
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+Lock removed
+release lock transaction: 2
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+Lock removed
+release lock transaction: 2
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+Lock removed
+release lock transaction: 2
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+Lock removed
+release lock transaction: 2
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+Lock removed
+release lock transaction: 2
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+Lock removed
+release lock transaction: 2
+Lock removed
+Handle result: NONE
+TXID: 4::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Processing Bucket: 9
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Lock is held by: 4
+Add Edge between 1and 4
+adding new 4 to the graph
+Add Edge between 3and 4
+Add Edge between 5and 4
+Add Edge between 7and 4
+Add Edge between 9and 4
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 4
+Lock is held by: 3
+Lock is held by: 1
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 4
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 4 
+Adjacents:
+1 : 8 6 4 
+8 : 
+3 : 8 6 4 
+5 : 8 6 4 
+7 : 8 6 4 
+9 : 8 6 4 
+6 : 
+4 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+COMMIT txid 4 from file index 4
+Release Rlock
+release lock transaction: 4
+Lock removed
+release lock transaction: 4
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+Lock removed
+release lock transaction: 4
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+Lock removed
+release lock transaction: 4
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+Lock removed
+release lock transaction: 4
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+Lock removed
+release lock transaction: 4
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+Lock removed
+release lock transaction: 4
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+Lock removed
+release lock transaction: 4
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+Lock removed
+release lock transaction: 4
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+Lock removed
+release lock transaction: 4
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+Lock removed
+release lock transaction: 4
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+Lock removed
+release lock transaction: 4
+Lock removed
+Handle result: NONE
+TXID: 6::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Lock is held by: 8
+Lock is held by: 6
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Lock is held by: 8
+Lock is held by: 6
+Processing Bucket: 9
+Lock is held by: 8
+Lock is held by: 6
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Lock is held by: 8
+Lock is held by: 6
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Lock is held by: 8
+Lock is held by: 6
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Lock is held by: 6
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Lock is held by: 6
+Add Edge between 1and 6
+adding new 6 to the graph
+Add Edge between 3and 6
+Add Edge between 5and 6
+Add Edge between 7and 6
+Add Edge between 9and 6
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Lock is held by: 6
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Lock is held by: 8
+Lock is held by: 6
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 8
+Lock is held by: 6
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 6
+Lock is held by: 5
+Lock is held by: 3
+Lock is held by: 1
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Lock is held by: 8
+Lock is held by: 6
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Lock is held by: 6
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 6 
+Adjacents:
+1 : 8 6 
+8 : 
+3 : 8 6 
+5 : 8 6 
+7 : 8 6 
+9 : 8 6 
+6 : 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+COMMIT txid 6 from file index 6
+Release Rlock
+release lock transaction: 6
+Lock removed
+release lock transaction: 6
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+Lock removed
+release lock transaction: 6
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+Lock removed
+release lock transaction: 6
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+Lock removed
+release lock transaction: 6
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+Lock removed
+release lock transaction: 6
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+Lock removed
+release lock transaction: 6
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+Lock removed
+release lock transaction: 6
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+Lock removed
+release lock transaction: 6
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+Lock removed
+release lock transaction: 6
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+Lock removed
+release lock transaction: 6
+Lock removed
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+Lock removed
+release lock transaction: 6
+Lock removed
+Handle result: NONE
+TXID: 8::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Lock is held by: 8
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Lock is held by: 8
+Processing Bucket: 9
+Lock is held by: 8
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Lock is held by: 8
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Lock is held by: 8
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Lock is held by: 8
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Lock is held by: 8
+Add Edge between 1and 8
+adding new 1 to the graph
+adding new 8 to the graph
+Add Edge between 3and 8
+adding new 3 to the graph
+Add Edge between 5and 8
+adding new 5 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+Add Edge between 9and 8
+adding new 9 to the graph
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Lock is held by: 8
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Lock is held by: 8
+Processing Bucket: 37
+Lock is held by: 8
+Lock is held by: 8
+Lock is held by: 8
+Lock is held by: 8
+Lock is held by: 8
+Lock is held by: 8
+Lock is held by: 8
+Lock is held by: 8
+Lock is held by: 8
+Lock is held by: 8
+Lock is held by: 9
+Lock is held by: 8
+Lock is held by: 7
+Lock is held by: 5
+Lock is held by: 3
+Lock is held by: 1
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Lock is held by: 8
+Processing Bucket: 44
+Processing Bucket: 45
+Lock is held by: 8
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+1 8 3 5 7 9 
+Adjacents:
+1 : 8 
+8 : 
+3 : 8 
+5 : 8 
+7 : 8 
+9 : 8 
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+COMMIT txid 8 from file index 8
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Lock removed
+Handle result: 1
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Lock removed
+Process Release Result: 3 Expected: NONE 
+Handle result: 3
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 1) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Lock removed
+Process Release Result: 5 Expected: NONE 
+Handle result: 5
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 1) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Lock removed
+Process Release Result: 7 Expected: NONE 
+Handle result: 7
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 1) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Lock removed
+Process Release Result: 9 Expected: NONE 
+Handle result: 9
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 1) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: P-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 1) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: P-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 2) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: P-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 3) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: P-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 4) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: P-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 5) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: P-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 6) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: P-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 7) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: P-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 8) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: P-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 9) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: P-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 10) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 9
+Process Holds no locks. No need to release.
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: P-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: P-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: P-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: P-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: P-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: P-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: P-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: P-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: P-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: P-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 7
+Process Holds no locks. No need to release.
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: P-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: P-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: P-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: P-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: P-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: P-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: P-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: P-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: P-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: P-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 5
+Process Holds no locks. No need to release.
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: P-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: P-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: P-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: P-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: P-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: P-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: P-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: P-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: P-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: P-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 3
+Process Holds no locks. No need to release.
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: P-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: P-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: P-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: P-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: P-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: P-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: P-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: P-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: P-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: P-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 1
+Process Holds no locks. No need to release.
+
+**********************************************************
+Statistics: 
+Commands: 
+Total: 185
+Committed: 185
+Aborted: 0
+Percantage of Success: 100%
+
+Reads: 
+Total: 110
+Committed: 110
+Aborted: 0
+Percantage of Success: 1%
+
+Writes: 
+Total: 55
+Committed: 55
+Aborted: 0
+Percantage of Success: 1%
+
+MReads: 
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Erase: 
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Deletes: 
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+
+
+

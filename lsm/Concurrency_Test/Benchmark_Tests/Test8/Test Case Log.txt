@@ -1,0 +1,1025 @@
+Multiple Delete Delete Interactions
+
+Expected: Deletes run in the order of input files. 
+Actual: As Expected
+
+Executed: ./myPTA roundrobin 1000 100 Concurrency_Test/Benchmark_Tests/Test8/test1.txt Concurrency_Test/Benchmark_Tests/Test8/test2.txt Concurrency_Test/Benchmark_Tests/Test8/test3.txt Concurrency_Test/Benchmark_Tests/Test8/test4.txt Concurrency_Test/Benchmark_Tests/Test8/test5.txt Concurrency_Test/Benchmark_Tests/Test8/test6.txt Concurrency_Test/Benchmark_Tests/Test8/test7.txt Concurrency_Test/Benchmark_Tests/Test8/test8.txt Concurrency_Test/Benchmark_Tests/Test8/test9.txt Concurrency_Test/Benchmark_Tests/Test8/test10.txt 
+
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+BEGIN Adding txid 2 to file index 2
+BEGIN Adding txid 3 to file index 3
+BEGIN Adding txid 4 to file index 4
+BEGIN Adding txid 5 to file index 5
+BEGIN Adding txid 6 to file index 6
+BEGIN Adding txid 7 to file index 7
+BEGIN Adding txid 8 to file index 8
+BEGIN Adding txid 9 to file index 9
+TXID: 0::D TESTERER
+Called DLOCK
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::D TESTERER
+Called DLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+TXID: 2::D TESTERER
+Called DLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+TXID: 3::D TESTERER
+Called DLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+TXID: 4::D TESTERER
+Called DLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+TXID: 5::D TESTERER
+Called DLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+TXID: 6::D TESTERER
+Called DLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+TXID: 7::D TESTERER
+Called DLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+TXID: 8::D TESTERER
+Called DLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+TXID: 9::D TESTERER
+Called DLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+TXID: 0::D TESTERER1
+Called DLOCK
+Acquire Lock data: TESTERER1 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::D TESTERER1
+TXID: 2::D TESTERER1
+TXID: 3::D TESTERER1
+TXID: 4::D TESTERER1
+TXID: 5::D TESTERER1
+TXID: 6::D TESTERER1
+TXID: 7::D TESTERER1
+TXID: 8::D TESTERER1
+TXID: 9::D TESTERER1
+TXID: 0::D TESTERER2
+Called DLOCK
+Acquire Lock data: TESTERER2 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::D TESTERER2
+TXID: 2::D TESTERER2
+TXID: 3::D TESTERER2
+TXID: 4::D TESTERER2
+TXID: 5::D TESTERER2
+TXID: 6::D TESTERER2
+TXID: 7::D TESTERER2
+TXID: 8::D TESTERER2
+TXID: 9::D TESTERER2
+TXID: 0::D TESTERER3
+Called DLOCK
+Acquire Lock data: TESTERER3 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::D TESTERER3
+TXID: 2::D TESTERER3
+TXID: 3::D TESTERER3
+TXID: 4::D TESTERER3
+TXID: 5::D TESTERER3
+TXID: 6::D TESTERER3
+TXID: 7::D TESTERER3
+TXID: 8::D TESTERER3
+TXID: 9::D TESTERER3
+TXID: 0::D TESTERER4
+Called DLOCK
+Acquire Lock data: TESTERER4 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::D TESTERER4
+TXID: 2::D TESTERER4
+TXID: 3::D TESTERER4
+TXID: 4::D TESTERER4
+TXID: 5::D TESTERER4
+TXID: 6::D TESTERER4
+TXID: 7::D TESTERER4
+TXID: 8::D TESTERER4
+TXID: 9::D TESTERER4
+TXID: 0::D TESTERER5
+Called DLOCK
+Acquire Lock data: TESTERER5 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::D TESTERER5
+TXID: 2::D TESTERER5
+TXID: 3::D TESTERER5
+TXID: 4::D TESTERER5
+TXID: 5::D TESTERER5
+TXID: 6::D TESTERER5
+TXID: 7::D TESTERER5
+TXID: 8::D TESTERER5
+TXID: 9::D TESTERER5
+TXID: 0::D TESTERER6
+Called DLOCK
+Acquire Lock data: TESTERER6 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::D TESTERER6
+TXID: 2::D TESTERER6
+TXID: 3::D TESTERER6
+TXID: 4::D TESTERER6
+TXID: 5::D TESTERER6
+TXID: 6::D TESTERER6
+TXID: 7::D TESTERER6
+TXID: 8::D TESTERER6
+TXID: 9::D TESTERER6
+TXID: 0::D TESTERER7
+Called DLOCK
+Acquire Lock data: TESTERER7 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::D TESTERER7
+TXID: 2::D TESTERER7
+TXID: 3::D TESTERER7
+TXID: 4::D TESTERER7
+TXID: 5::D TESTERER7
+TXID: 6::D TESTERER7
+TXID: 7::D TESTERER7
+TXID: 8::D TESTERER7
+TXID: 9::D TESTERER7
+TXID: 0::D TESTERER8
+Called DLOCK
+Acquire Lock data: TESTERER8 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::D TESTERER8
+TXID: 2::D TESTERER8
+TXID: 3::D TESTERER8
+TXID: 4::D TESTERER8
+TXID: 5::D TESTERER8
+TXID: 6::D TESTERER8
+TXID: 7::D TESTERER8
+TXID: 8::D TESTERER8
+TXID: 9::D TESTERER8
+TXID: 0::D TESTERER9
+Called DLOCK
+Acquire Lock data: TESTERER9 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::D TESTERER9
+TXID: 2::D TESTERER9
+TXID: 3::D TESTERER9
+TXID: 4::D TESTERER9
+TXID: 5::D TESTERER9
+TXID: 6::D TESTERER9
+TXID: 7::D TESTERER9
+TXID: 8::D TESTERER9
+TXID: 9::D TESTERER9
+TXID: 0::D TESTERER0
+Called DLOCK
+Acquire Lock data: TESTERER0 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::D TESTERER0
+TXID: 2::D TESTERER0
+TXID: 3::D TESTERER0
+TXID: 4::D TESTERER0
+TXID: 5::D TESTERER0
+TXID: 6::D TESTERER0
+TXID: 7::D TESTERER0
+TXID: 8::D TESTERER0
+TXID: 9::D TESTERER0
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Handle result: 1
+WAITING OP: D TESTERER
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER1
+Acquire Lock data: TESTERER1 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER4
+Acquire Lock data: TESTERER4 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER5
+Acquire Lock data: TESTERER5 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER7
+Acquire Lock data: TESTERER7 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER9
+Acquire Lock data: TESTERER9 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER0
+Acquire Lock data: TESTERER0 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: 2
+WAITING OP: D TESTERER
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER1
+Acquire Lock data: TESTERER1 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER4
+Acquire Lock data: TESTERER4 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER5
+Acquire Lock data: TESTERER5 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER7
+Acquire Lock data: TESTERER7 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER9
+Acquire Lock data: TESTERER9 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER0
+Acquire Lock data: TESTERER0 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 2::C
+COMMIT Erasing txid 2 from file index 2
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 2
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 2
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 2
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 2
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 2
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 2
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 2
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 2
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 2
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 2
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 2
+Handle result: 3
+WAITING OP: D TESTERER
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER1
+Acquire Lock data: TESTERER1 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER4
+Acquire Lock data: TESTERER4 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER5
+Acquire Lock data: TESTERER5 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER7
+Acquire Lock data: TESTERER7 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER9
+Acquire Lock data: TESTERER9 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER0
+Acquire Lock data: TESTERER0 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 3::C
+COMMIT Erasing txid 3 from file index 3
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 3
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 3
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 3
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 3
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 3
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 3
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 3
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 3
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 3
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 3
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 3
+Handle result: 4
+WAITING OP: D TESTERER
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER1
+Acquire Lock data: TESTERER1 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER4
+Acquire Lock data: TESTERER4 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER5
+Acquire Lock data: TESTERER5 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER7
+Acquire Lock data: TESTERER7 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER9
+Acquire Lock data: TESTERER9 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER0
+Acquire Lock data: TESTERER0 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 4::C
+COMMIT Erasing txid 4 from file index 4
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 4
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 4
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 4
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 4
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 4
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 4
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 4
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 4
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 4
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 4
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 4
+Handle result: 5
+WAITING OP: D TESTERER
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER1
+Acquire Lock data: TESTERER1 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER4
+Acquire Lock data: TESTERER4 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER5
+Acquire Lock data: TESTERER5 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER7
+Acquire Lock data: TESTERER7 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER9
+Acquire Lock data: TESTERER9 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER0
+Acquire Lock data: TESTERER0 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 5::C
+COMMIT Erasing txid 5 from file index 5
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 5
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 5
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 5
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 5
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 5
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 5
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 5
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 5
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 5
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 5
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 5
+Handle result: 6
+WAITING OP: D TESTERER
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER1
+Acquire Lock data: TESTERER1 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER4
+Acquire Lock data: TESTERER4 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER5
+Acquire Lock data: TESTERER5 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER7
+Acquire Lock data: TESTERER7 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER9
+Acquire Lock data: TESTERER9 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER0
+Acquire Lock data: TESTERER0 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 6::C
+COMMIT Erasing txid 6 from file index 6
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 6
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 6
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 6
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 6
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 6
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 6
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 6
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 6
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 6
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 6
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 6
+Handle result: 7
+WAITING OP: D TESTERER
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER1
+Acquire Lock data: TESTERER1 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER4
+Acquire Lock data: TESTERER4 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER5
+Acquire Lock data: TESTERER5 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER7
+Acquire Lock data: TESTERER7 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER9
+Acquire Lock data: TESTERER9 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER0
+Acquire Lock data: TESTERER0 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 7::C
+COMMIT Erasing txid 7 from file index 7
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 7
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 7
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 7
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 7
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 7
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 7
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 7
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 7
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 7
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 7
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 7
+Handle result: 8
+WAITING OP: D TESTERER
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER1
+Acquire Lock data: TESTERER1 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER4
+Acquire Lock data: TESTERER4 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER5
+Acquire Lock data: TESTERER5 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER7
+Acquire Lock data: TESTERER7 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER9
+Acquire Lock data: TESTERER9 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER0
+Acquire Lock data: TESTERER0 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 8::C
+COMMIT Erasing txid 8 from file index 8
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 8
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 8
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 8
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 8
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 8
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 8
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 8
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 8
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 8
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 8
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 8
+Handle result: 9
+WAITING OP: D TESTERER
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER1
+Acquire Lock data: TESTERER1 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER4
+Acquire Lock data: TESTERER4 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER5
+Acquire Lock data: TESTERER5 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER7
+Acquire Lock data: TESTERER7 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER9
+Acquire Lock data: TESTERER9 Lock Type: T-DELETE
+LSM Deleting...
+Called DLOCK
+FOUND TABLE TESTERER0
+Acquire Lock data: TESTERER0 Lock Type: T-DELETE
+LSM Deleting...
+TXID: 9::C
+COMMIT Erasing txid 9 from file index 9
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 9
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 9
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 9
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 9
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 9
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 9
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 9
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 9
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 9
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 9
+Handle result: NONE
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 9
+Handle result: NONE

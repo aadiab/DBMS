@@ -1,0 +1,344 @@
+
+** Case: DeadLock between Erase operations (Transaction Mode):
+
+** Command: .\myPTA.exe roundrobin 1000 100 DeadLock_Test\erase0.txt DeadLock_Test\erase1.txt DeadLock_Test\erase3.txt
+** Scenario: 3 Transactions (T0, T1, T2), create a deadlock, and it is resolved by removing the last inserted (T2).
+** You can search "WFG", or "deadlock" to see the process before and after resolving the deadlock. 
+** Below is the complete log for running the command above. 
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+W:\Github_rep\CS2550-Project-Team4\lsm>.\myPTA.exe roundrobin 1000 100 DeadLock_Test\erase0.txt DeadLock_Test\erase1.txt DeadLock_Test\erase3.txt
+Logger Initialized!
+BEGIN Adding txid 0 to file index 0
+Start of 0
+BEGIN Adding txid 1 to file index 1
+Start of 1
+BEGIN Adding txid 2 to file index 2
+Start of 2
+TXID: 0::E TESTERER 1
+Called ELOCK
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 2
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 2::E TESTERER 3
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 0::E TESTERER 2
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+TXID: 1::E TESTERER 3
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+TXID: 2::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+TXID: 0::E TESTERER 5
+TXID: 1::E TESTERER 4
+TXID: 2::E TESTERER 10
+TXID: 0::E TESTERER 4
+TXID: 1::E TESTERER 5
+TXID: 2::E TESTERER 11
+TXID: 0::E TESTERER 23
+TXID: 1::E TESTERER 13
+TXID: 2::E TESTERER 12
+TXID: 0::E TESTERER 24
+TXID: 1::E TESTERER 14
+Running DeadLock Detection after command 20processed
+Add Edge between 2and 0
+adding new 2 to the graph
+adding new 0 to the graph
+Add Edge between 0and 1
+adding new 1 to the graph
+Add Edge between 1and 2
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+2 0 1
+Adjacents:
+2 : 0
+0 : 1
+1 : 2
+*************************
+Deadlock detected, removing transaction: 2
+erasing node2 from Graph
+Erasing the node from transactions list
+Erasing the node from WFG
+
+*************************
+Transactions:
+0 1
+Adjacents:
+0 : 1
+1 :
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1
+Adjacents:
+0 : 1
+1 :
+*************************
+DeadLock detected, aborting the following transactions:
+2
+PROCESSING 2 T
+PROCESSING T
+PROCESSING T
+ROLLING BACK T
+*** NEW WAITING OP: E TESTERER 1
+Release Elock
+release lock transaction: 2
+Lock removed
+release lock transaction: 2
+Release Elock
+release lock transaction: 2
+release lock transaction: 2
+Lock removed
+Handle result: 1
+WAITING OP: E TESTERER 3
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_13 Lock Type: T-ERASE
+testing collison
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_14 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 2::E TESTERER 10
+TXID: 0::E TESTERER 25
+TXID: 1::E TESTERER 15
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_15 Lock Type: T-ERASE
+testing collison
+LSM Erasing...
+TXID: 2::E TESTERER 10
+TXID: 0::C
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1
+Adjacents:
+0 : 1
+1 :
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1
+Adjacents:
+0 : 1
+1 :
+*************************
+No deadlocks detected, resume normally
+TXID: 1::C
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1
+Adjacents:
+0 : 1
+1 :
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1
+Adjacents:
+0 : 1
+1 :
+*************************
+No deadlocks detected, resume normally
+COMMIT txid 1 from file index 1
+Release Elock
+release lock transaction: 1
+Removing last Lock on a data element: TESTERER_15
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+Removing last Lock on a data element: TESTERER_13
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Lock removed
+Handle result: 0
+WAITING OP: E TESTERER 2
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_23 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_24 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_25 Lock Type: T-ERASE
+LSM Erasing...
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 0
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+TXID: 2::C
+
+**********************************************************
+Statistics:
+Commands:
+Total: 27
+Committed: 21
+Aborted: 6
+Percantage of Success: 77.7778%
+
+Reads:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Writes:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+MReads:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Erase:
+Total: 20
+Committed: 14
+Aborted: 6
+Percantage of Success: 70%
+
+Deletes:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+
+**********************************************************
+Done Printing Transaction List

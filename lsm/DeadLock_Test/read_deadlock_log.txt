@@ -1,0 +1,294 @@
+
+** Case: Read Operations and DeadLocks (Transaction Mode):
+
+** Command: .\myPTA.exe roundrobin 1000 100 DeadLock_Test\read0.txt DeadLock_Test\read1.txt DeadLock_Test\read2.txt
+** Scenario: 3 Transactions (T0, T1, T2), read the same record over and over. But read do not conflict with each other, so no deadlock created and all transactions commit normally
+** You can search "WFG", or "deadlock" to see the process before and after calling deadlock detection. 
+** Below is the complete log for running the command above. 
+** This is a demonstration of how to see deadlock in action, benchmarks will show more details and various scenarios
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+W:\Github_rep\CS2550-Project-Team4\lsm>.\myPTA.exe roundrobin 1000 100 DeadLock_Test\read0.txt DeadLock_Test\read1.txt DeadLock_Test\read2.txt
+Logger Initialized!
+BEGIN Adding txid 0 to file index 0
+Start of 0
+BEGIN Adding txid 1 to file index 1
+Start of 1
+BEGIN Adding txid 2 to file index 2
+Start of 2
+TXID: 0::R TESTERER 13
+Called RLOCK
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+Running DeadLock Detection after command 20processed
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, resume normally
+TXID: 2::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::C
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, resume normally
+COMMIT txid 0 from file index 0
+Release Rlock
+release lock transaction: 0
+Lock removed
+release lock transaction: 0
+Lock removed
+Handle result: NONE
+TXID: 1::C
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, resume normally
+COMMIT txid 1 from file index 1
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Lock removed
+Handle result: NONE
+TXID: 2::C
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, resume normally
+COMMIT txid 2 from file index 2
+Release Rlock
+release lock transaction: 2
+Removing last Lock on a data element: TESTERER_13
+release lock transaction: 2
+Removing last Lock on a data element: TESTERER
+Handle result: NONE
+
+**********************************************************
+Statistics:
+Commands:
+Total: 24
+Committed: 24
+Aborted: 0
+Percantage of Success: 100%
+
+Reads:
+Total: 18
+Committed: 18
+Aborted: 0
+Percantage of Success: 100%
+
+Writes:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+MReads:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Erase:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Deletes:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+
+**********************************************************
+Done Printing Transaction List
+
+W:\Github_rep\CS2550-Project-Team4\lsm>

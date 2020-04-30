@@ -1,0 +1,1480 @@
+
+** BenchTest4: Erase operations with deadlock detected:
+- The nature of this test is generally similar to TestBench3
+- 10 Different transactions, all Erase (4 times) on independent records, then Erase on each others records to craete this WFG on the 5th operation:
+	
+	T0 -> T1 -> T2 -> T3 -> T4 -> T5 -> T6 -> T7 -> T8 -> T9 -> T0 
+ 
+- The cycle of 11, starting from T0 and looping back, generates a deadlock.
+- This deadlock is resolved by aborting one transaction, when it happens; the rest will perform normally.
+
+
+** Command: .\myPTA.exe roundrobin 1000 100 DeadLock_Test\Benchmark_Tests\Test4-Erase\erase0.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase1.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase2.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase3.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase4.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase5.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase6.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase7.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase8.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase9.txt
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+W:\Github_rep\CS2550-Project-Team4\lsm>.\myPTA.exe roundrobin 1000 100 DeadLock_Test\Benchmark_Tests\Test4-Erase\erase0.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase1.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase2.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase3.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase4.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase5.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase6.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase7.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase8.txt DeadLock_Test\Benchmark_Tests\Test4-Erase\erase9.txt
+Logger Initialized!
+BEGIN Adding txid 0 to file index 0
+Start of 0
+BEGIN Adding txid 1 to file index 1
+Start of 1
+BEGIN Adding txid 2 to file index 2
+Start of 2
+BEGIN Adding txid 3 to file index 3
+Start of 3
+BEGIN Adding txid 4 to file index 4
+Start of 4
+BEGIN Adding txid 5 to file index 5
+Start of 5
+BEGIN Adding txid 6 to file index 6
+Start of 6
+BEGIN Adding txid 7 to file index 7
+Start of 7
+BEGIN Adding txid 8 to file index 8
+Start of 8
+BEGIN Adding txid 9 to file index 9
+Start of 9
+TXID: 0::E TESTERER 0
+Called ELOCK
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_0 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 2::E TESTERER 2
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 3::E TESTERER 3
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 4::E TESTERER 4
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 5::E TESTERER 5
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 6::E TESTERER 6
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 7::E TESTERER 7
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 8::E TESTERER 8
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+testing collison
+LSM Erasing...
+TXID: 9::E TESTERER 9
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_9 Lock Type: T-ERASE
+LSM Erasing...
+Running DeadLock Detection after command 20processed
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, resume normally
+TXID: 0::E TESTERER 0
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_0 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 2::E TESTERER 2
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 3::E TESTERER 3
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 4::E TESTERER 4
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 5::E TESTERER 5
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 6::E TESTERER 6
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 7::E TESTERER 7
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 8::E TESTERER 8
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+testing collison
+LSM Erasing...
+TXID: 9::E TESTERER 9
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_9 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 0::E TESTERER 0
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_0 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 2::E TESTERER 2
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 3::E TESTERER 3
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 4::E TESTERER 4
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 5::E TESTERER 5
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 6::E TESTERER 6
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 7::E TESTERER 7
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 8::E TESTERER 8
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+testing collison
+LSM Erasing...
+TXID: 9::E TESTERER 9
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_9 Lock Type: T-ERASE
+LSM Erasing...
+Running DeadLock Detection after command 40processed
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, resume normally
+TXID: 0::E TESTERER 0
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_0 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 2::E TESTERER 2
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 3::E TESTERER 3
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 4::E TESTERER 4
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 5::E TESTERER 5
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 6::E TESTERER 6
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 7::E TESTERER 7
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 8::E TESTERER 8
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+testing collison
+LSM Erasing...
+TXID: 9::E TESTERER 9
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_9 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 0::E TESTERER 0
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_0 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 2
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+TXID: 2::E TESTERER 2
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 3::E TESTERER 4
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+TXID: 4::E TESTERER 5
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+TXID: 5::E TESTERER 6
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+TXID: 6::E TESTERER 7
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+TXID: 7::E TESTERER 8
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+testing collison
+TXID: 8::E TESTERER 9
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_9 Lock Type: T-ERASE
+TXID: 9::E TESTERER 0
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_0 Lock Type: T-ERASE
+Running DeadLock Detection after command 60processed
+Add Edge between 8and 9
+adding new 8 to the graph
+adding new 9 to the graph
+Add Edge between 6and 7
+adding new 6 to the graph
+adding new 7 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 7and 8
+Add Edge between 1and 2
+adding new 1 to the graph
+adding new 2 to the graph
+Add Edge between 3and 4
+adding new 3 to the graph
+Add Edge between 9and 0
+adding new 0 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+8 9 6 7 5 4 1 2 3 0
+Adjacents:
+8 : 9
+9 : 0
+6 : 7
+7 : 8
+5 : 6
+4 : 5
+1 : 2
+2 :
+3 : 4
+0 :
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+8 9 6 7 5 4 1 2 3 0
+Adjacents:
+8 : 9
+9 : 0
+6 : 7
+7 : 8
+5 : 6
+4 : 5
+1 : 2
+2 :
+3 : 4
+0 :
+*************************
+No deadlocks detected, resume normally
+TXID: 0::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+TXID: 1::E TESTERER 2
+TXID: 2::E TESTERER 3
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+TXID: 3::E TESTERER 4
+TXID: 4::E TESTERER 5
+TXID: 5::E TESTERER 6
+TXID: 6::E TESTERER 7
+TXID: 7::E TESTERER 8
+TXID: 8::E TESTERER 9
+TXID: 9::E TESTERER 0
+TXID: 0::E TESTERER 1
+TXID: 1::E TESTERER 2
+TXID: 2::E TESTERER 3
+TXID: 3::E TESTERER 4
+TXID: 4::E TESTERER 5
+TXID: 5::E TESTERER 6
+TXID: 6::E TESTERER 7
+TXID: 7::E TESTERER 8
+TXID: 8::E TESTERER 9
+TXID: 9::E TESTERER 0
+Running DeadLock Detection after command 80processed
+Add Edge between 8and 9
+adding new 8 to the graph
+adding new 9 to the graph
+Add Edge between 6and 7
+adding new 6 to the graph
+adding new 7 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 7and 8
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+8 9 6 7 5 4 0 1 2 3
+Adjacents:
+8 : 9
+9 : 0
+6 : 7
+7 : 8
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+*************************
+Deadlock detected, removing transaction: 8
+erasing node8 from Graph
+Erasing the node from transactions list
+Erasing the node from WFG
+
+*************************
+Transactions:
+9 6 7 5 4 0 1 2 3
+Adjacents:
+9 : 0
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+9 6 7 5 4 0 1 2 3
+Adjacents:
+9 : 0
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+*************************
+DeadLock detected, aborting the following transactions:
+8
+PROCESSING 8 T
+PROCESSING T
+PROCESSING T
+ROLLING BACK T
+*** NEW WAITING OP: E TESTERER 9
+Release Elock
+release lock transaction: 8
+Lock removed
+release lock transaction: 8
+Lock removed
+Release Elock
+release lock transaction: 8
+release lock transaction: 8
+Lock removed
+Handle result: 7
+WAITING OP: E TESTERER 8
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+testing collison
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+testing collison
+LSM Erasing...
+TXID: 0::E TESTERER 1
+TXID: 1::E TESTERER 2
+TXID: 2::E TESTERER 3
+TXID: 3::E TESTERER 4
+TXID: 4::E TESTERER 5
+TXID: 5::E TESTERER 6
+TXID: 6::E TESTERER 7
+TXID: 7::E TESTERER 8
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+testing collison
+LSM Erasing...
+TXID: 8::E TESTERER 9
+TXID: 9::E TESTERER 0
+TXID: 0::E TESTERER 1
+TXID: 1::E TESTERER 2
+TXID: 2::E TESTERER 3
+TXID: 3::C
+Add Edge between 6and 7
+adding new 6 to the graph
+adding new 7 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, resume normally
+TXID: 4::C
+Add Edge between 6and 7
+adding new 6 to the graph
+adding new 7 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, resume normally
+TXID: 5::C
+Add Edge between 6and 7
+adding new 6 to the graph
+adding new 7 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, resume normally
+TXID: 6::C
+Add Edge between 6and 7
+adding new 6 to the graph
+adding new 7 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, resume normally
+TXID: 7::C
+Add Edge between 6and 7
+adding new 6 to the graph
+adding new 7 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, resume normally
+COMMIT txid 7 from file index 7
+Release Elock
+release lock transaction: 7
+Removing last Lock on a data element: TESTERER_8
+release lock transaction: 7
+Lock removed
+Handle result: NONE
+Release Elock
+release lock transaction: 7
+release lock transaction: 7
+Lock removed
+Handle result: 6
+WAITING OP: E TESTERER 7
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+5 6 4 0 1 2 3 9
+Adjacents:
+5 : 6
+6 :
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+5 6 4 0 1 2 3 9
+Adjacents:
+5 : 6
+6 :
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 6
+Release Elock
+release lock transaction: 6
+release lock transaction: 6
+Lock removed
+Handle result: NONE
+Release Elock
+release lock transaction: 6
+release lock transaction: 6
+Lock removed
+Handle result: 5
+WAITING OP: E TESTERER 6
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+Add Edge between 4and 5
+adding new 4 to the graph
+adding new 5 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+4 5 0 1 2 3 9
+Adjacents:
+4 : 5
+5 :
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+4 5 0 1 2 3 9
+Adjacents:
+4 : 5
+5 :
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 5
+Release Elock
+release lock transaction: 5
+release lock transaction: 5
+Lock removed
+Handle result: NONE
+Release Elock
+release lock transaction: 5
+release lock transaction: 5
+Lock removed
+Handle result: 4
+WAITING OP: E TESTERER 5
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+adding new 4 to the graph
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1 2 3 4 9
+Adjacents:
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+4 :
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1 2 3 4 9
+Adjacents:
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+4 :
+9 : 0
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 4
+Release Elock
+release lock transaction: 4
+release lock transaction: 4
+Lock removed
+Handle result: NONE
+Release Elock
+release lock transaction: 4
+release lock transaction: 4
+Lock removed
+Handle result: 3
+WAITING OP: E TESTERER 4
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1 2 3 9
+Adjacents:
+0 : 1
+1 : 2
+2 : 3
+3 :
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1 2 3 9
+Adjacents:
+0 : 1
+1 : 2
+2 : 3
+3 :
+9 : 0
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 3
+Release Elock
+release lock transaction: 3
+release lock transaction: 3
+Lock removed
+Handle result: NONE
+Release Elock
+release lock transaction: 3
+release lock transaction: 3
+Lock removed
+Handle result: 2
+WAITING OP: E TESTERER 3
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 8::C
+TXID: 9::E TESTERER 0
+Running DeadLock Detection after command 100processed
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, resume normally
+TXID: 0::C
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, resume normally
+TXID: 1::C
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, resume normally
+TXID: 2::C
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, resume normally
+COMMIT txid 2 from file index 2
+Release Elock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Elock
+release lock transaction: 2
+release lock transaction: 2
+Lock removed
+Handle result: 1
+WAITING OP: E TESTERER 2
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1 9
+Adjacents:
+0 : 1
+1 :
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1 9
+Adjacents:
+0 : 1
+1 :
+9 : 0
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 1
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Lock removed
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Lock removed
+Handle result: 0
+WAITING OP: E TESTERER 1
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+LSM Erasing...
+Add Edge between 9and 0
+adding new 9 to the graph
+adding new 0 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+9 0
+Adjacents:
+9 : 0
+0 :
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+9 0
+Adjacents:
+9 : 0
+0 :
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 0
+Release Elock
+release lock transaction: 0
+Removing last Lock on a data element: TESTERER_1
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Lock removed
+Handle result: 9
+WAITING OP: E TESTERER 0
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_0 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_0 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_0 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_0 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 9::C
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, resume normally
+COMMIT txid 9 from file index 9
+Release Elock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Elock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+
+**********************************************************
+Statistics:
+Commands:
+Total: 104
+Committed: 99
+Aborted: 5
+Percantage of Success: 95.1923%
+
+Reads:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Writes:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+MReads:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Erase:
+Total: 84
+Committed: 79
+Aborted: 5
+Percantage of Success: 94.0476%
+
+Deletes:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+
+**********************************************************
+Done Printing Transaction List

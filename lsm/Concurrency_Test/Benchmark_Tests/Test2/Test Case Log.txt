@@ -1,0 +1,1476 @@
+Multiple Write Write Interactions
+
+Expected: All Writes from T0 Run because T0 acquires the locks on the records first. Once T0 commits, all of T1 should run since T1 was only blocked by T0. At the end, only the updates of the last transactions are saved to the db. 
+Actual: As expected, the Write locks held by T0 hold up all other operations and only run when t0 commits. When t0 commits, t1 acquires all the locks and runs. 
+
+Executed: ./myPTA roundrobin 1000 100 Concurrency_Test/Benchmark_Tests/Test2/test1.txt Concurrency_Test/Benchmark_Tests/Test2/test2.txt Concurrency_Test/Benchmark_Tests/Test2/test3.txt Concurrency_Test/Benchmark_Tests/Test2/test4.txt Concurrency_Test/Benchmark_Tests/Test2/test5.txt Concurrency_Test/Benchmark_Tests/Test2/test6.txt Concurrency_Test/Benchmark_Tests/Test2/test7.txt Concurrency_Test/Benchmark_Tests/Test2/test8.txt Concurrency_Test/Benchmark_Tests/Test2/test9.txt Concurrency_Test/Benchmark_Tests/Test2/test10.txt 
+
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+BEGIN Adding txid 2 to file index 2
+BEGIN Adding txid 3 to file index 3
+BEGIN Adding txid 4 to file index 4
+BEGIN Adding txid 5 to file index 5
+BEGIN Adding txid 6 to file index 6
+BEGIN Adding txid 7 to file index 7
+BEGIN Adding txid 8 to file index 8
+BEGIN Adding txid 9 to file index 9
+TXID: 0::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+TXID: 1::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+TXID: 2::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+TXID: 3::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+TXID: 4::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+TXID: 5::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+TXID: 6::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+TXID: 7::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+TXID: 8::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+TXID: 9::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+TXID: 0::W TESTERER (2, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 1) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+TXID: 1::W TESTERER (2, John, 412-111-2222)
+TXID: 2::W TESTERER (2, John, 412-111-2222)
+TXID: 3::W TESTERER (2, John, 412-111-2222)
+TXID: 4::W TESTERER (2, John, 412-111-2222)
+TXID: 5::W TESTERER (2, John, 412-111-2222)
+TXID: 6::W TESTERER (2, John, 412-111-2222)
+TXID: 7::W TESTERER (2, John, 412-111-2222)
+TXID: 8::W TESTERER (2, John, 412-111-2222)
+TXID: 9::W TESTERER (2, John, 412-111-2222)
+TXID: 0::W TESTERER (3, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 2) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+TXID: 1::W TESTERER (3, John, 412-111-2222)
+TXID: 2::W TESTERER (3, John, 412-111-2222)
+TXID: 3::W TESTERER (3, John, 412-111-2222)
+TXID: 4::W TESTERER (3, John, 412-111-2222)
+TXID: 5::W TESTERER (3, John, 412-111-2222)
+TXID: 6::W TESTERER (3, John, 412-111-2222)
+TXID: 7::W TESTERER (3, John, 412-111-2222)
+TXID: 8::W TESTERER (3, John, 412-111-2222)
+TXID: 9::W TESTERER (3, John, 412-111-2222)
+TXID: 0::W TESTERER (4, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 3) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+TXID: 1::W TESTERER (4, John, 412-111-2222)
+TXID: 2::W TESTERER (4, John, 412-111-2222)
+TXID: 3::W TESTERER (4, John, 412-111-2222)
+TXID: 4::W TESTERER (4, John, 412-111-2222)
+TXID: 5::W TESTERER (4, John, 412-111-2222)
+TXID: 6::W TESTERER (4, John, 412-111-2222)
+TXID: 7::W TESTERER (4, John, 412-111-2222)
+TXID: 8::W TESTERER (4, John, 412-111-2222)
+TXID: 9::W TESTERER (4, John, 412-111-2222)
+TXID: 0::W TESTERER (5, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 4) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+TXID: 1::W TESTERER (5, John, 412-111-2222)
+TXID: 2::W TESTERER (5, John, 412-111-2222)
+TXID: 3::W TESTERER (5, John, 412-111-2222)
+TXID: 4::W TESTERER (5, John, 412-111-2222)
+TXID: 5::W TESTERER (5, John, 412-111-2222)
+TXID: 6::W TESTERER (5, John, 412-111-2222)
+TXID: 7::W TESTERER (5, John, 412-111-2222)
+TXID: 8::W TESTERER (5, John, 412-111-2222)
+TXID: 9::W TESTERER (5, John, 412-111-2222)
+TXID: 0::W TESTERER (6, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 5) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+TXID: 1::W TESTERER (6, John, 412-111-2222)
+TXID: 2::W TESTERER (6, John, 412-111-2222)
+TXID: 3::W TESTERER (6, John, 412-111-2222)
+TXID: 4::W TESTERER (6, John, 412-111-2222)
+TXID: 5::W TESTERER (6, John, 412-111-2222)
+TXID: 6::W TESTERER (6, John, 412-111-2222)
+TXID: 7::W TESTERER (6, John, 412-111-2222)
+TXID: 8::W TESTERER (6, John, 412-111-2222)
+TXID: 9::W TESTERER (6, John, 412-111-2222)
+TXID: 0::W TESTERER (7, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 6) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+TXID: 1::W TESTERER (7, John, 412-111-2222)
+TXID: 2::W TESTERER (7, John, 412-111-2222)
+TXID: 3::W TESTERER (7, John, 412-111-2222)
+TXID: 4::W TESTERER (7, John, 412-111-2222)
+TXID: 5::W TESTERER (7, John, 412-111-2222)
+TXID: 6::W TESTERER (7, John, 412-111-2222)
+TXID: 7::W TESTERER (7, John, 412-111-2222)
+TXID: 8::W TESTERER (7, John, 412-111-2222)
+TXID: 9::W TESTERER (7, John, 412-111-2222)
+TXID: 0::W TESTERER (8, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 7) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+TXID: 1::W TESTERER (8, John, 412-111-2222)
+TXID: 2::W TESTERER (8, John, 412-111-2222)
+TXID: 3::W TESTERER (8, John, 412-111-2222)
+TXID: 4::W TESTERER (8, John, 412-111-2222)
+TXID: 5::W TESTERER (8, John, 412-111-2222)
+TXID: 6::W TESTERER (8, John, 412-111-2222)
+TXID: 7::W TESTERER (8, John, 412-111-2222)
+TXID: 8::W TESTERER (8, John, 412-111-2222)
+TXID: 9::W TESTERER (8, John, 412-111-2222)
+TXID: 0::W TESTERER (9, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 8) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+TXID: 1::W TESTERER (9, John, 412-111-2222)
+TXID: 2::W TESTERER (9, John, 412-111-2222)
+TXID: 3::W TESTERER (9, John, 412-111-2222)
+TXID: 4::W TESTERER (9, John, 412-111-2222)
+TXID: 5::W TESTERER (9, John, 412-111-2222)
+TXID: 6::W TESTERER (9, John, 412-111-2222)
+TXID: 7::W TESTERER (9, John, 412-111-2222)
+TXID: 8::W TESTERER (9, John, 412-111-2222)
+TXID: 9::W TESTERER (9, John, 412-111-2222)
+TXID: 0::W TESTERER (10, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: T-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 9) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+TXID: 1::W TESTERER (10, John, 412-111-2222)
+TXID: 2::W TESTERER (10, John, 412-111-2222)
+TXID: 3::W TESTERER (10, John, 412-111-2222)
+TXID: 4::W TESTERER (10, John, 412-111-2222)
+TXID: 5::W TESTERER (10, John, 412-111-2222)
+TXID: 6::W TESTERER (10, John, 412-111-2222)
+TXID: 7::W TESTERER (10, John, 412-111-2222)
+TXID: 8::W TESTERER (10, John, 412-111-2222)
+TXID: 9::W TESTERER (10, John, 412-111-2222)
+TXID: 0::W TESTERER (11, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: T-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 10) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+TXID: 1::W TESTERER (11, John, 412-111-2222)
+TXID: 2::W TESTERER (11, John, 412-111-2222)
+TXID: 3::W TESTERER (11, John, 412-111-2222)
+TXID: 4::W TESTERER (11, John, 412-111-2222)
+TXID: 5::W TESTERER (11, John, 412-111-2222)
+TXID: 6::W TESTERER (11, John, 412-111-2222)
+TXID: 7::W TESTERER (11, John, 412-111-2222)
+TXID: 8::W TESTERER (11, John, 412-111-2222)
+TXID: 9::W TESTERER (11, John, 412-111-2222)
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: T-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: T-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: 2
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: T-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: T-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+TXID: 2::C
+COMMIT Erasing txid 2 from file index 2
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: 3
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: T-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: T-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+TXID: 3::C
+COMMIT Erasing txid 3 from file index 3
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: 4
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: T-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: T-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+TXID: 4::C
+COMMIT Erasing txid 4 from file index 4
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: 5
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: T-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: T-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+TXID: 5::C
+COMMIT Erasing txid 5 from file index 5
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: 6
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: T-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: T-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+TXID: 6::C
+COMMIT Erasing txid 6 from file index 6
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: 7
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: T-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: T-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+TXID: 7::C
+COMMIT Erasing txid 7 from file index 7
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: 8
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: T-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: T-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+TXID: 8::C
+COMMIT Erasing txid 8 from file index 8
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: 9
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: T-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: T-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+TXID: 9::C
+COMMIT Erasing txid 9 from file index 9
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE

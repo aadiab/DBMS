@@ -1,0 +1,204 @@
+This test shows that Transactions and Processes can be intermixed. 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LOST UPDATE 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+W-E (write.txt, erase_proc.txt)
+Expected: Write is a transaction so it'll acquire the lock and wait. Since the record is locked by a transaction the process waits to run until T0 commits. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_13 Lock Type: T-WRITE
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+TXID: 1::E TESTERER 13
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-ERASE
+Acquire Lock data: TESTERER_13 Lock Type: P-ERASE
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: E TESTERER 13
+LSM Erasing...
+Pushing record: ID: 13 Name:  Phone: 
+(N: 1) Inserting record: ID: 13 Name:  Phone: 
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Erasing message shows up after T0 commits, so this Passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+DIRTY READS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+W-R (write.txt, read_proc.txt)
+Expected: Write is a transaction so it'll acquire the lock and wait. Since the record is locked by a transaction the process waits to run until T0 commits. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_13 Lock Type: T-WRITE
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+TXID: 1::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_13 Lock Type: P-READ
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: R TESTERER 13
+LSM Reading...
+Finding record with ID: 13
+Found record:
+	ID: 13 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+The LSM Reading message shows up after T0 Commits, so this Passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+NON-REPEATABLE READS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+R-W-R (nonrepeatable_read.txt, write_proc.txt)
+Expected: Since the read is a transaction, it acquires the read lock and releases it at commit time. This causes the Process to wait until T0 Commits. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::R TESTERER 13
+Called RLOCK
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_13 Lock Type: P-WRITE
+TXID: 0::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::C
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: W TESTERER (13, John, 412-111-2222)
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Running Delayed Commit for ID: 1
+Process Holds no locks. No need to release.
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+The two reads called by T0 ran before the write so nonrepeatable_reads is not possible when we have a transaction and a process. Passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Additional Test (Write.txt, read_proc.txt, read.txt) (Transaction - Process - Transaction Interaction)
+Expected: The first transaction hold a lock on the data item. The process and the second transaction wait for the lock to be released. When the process can acquire the lock it runs and immediately releases the lock allowing the last transaction to run. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+BEGIN Adding txid 2 to file index 2
+TXID: 0::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_13 Lock Type: T-WRITE
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+TXID: 1::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_13 Lock Type: P-READ
+TXID: 2::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: R TESTERER 13
+LSM Reading...
+Finding record with ID: 13
+Found record:
+	ID: 13 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: 2 Expected: NONE 
+Handle result: 2
+WAITING OP: R TESTERER 13
+LSM Reading...
+Finding record with ID: 13
+Found record:
+	ID: 13 Name: John Phone: 412-111-2222
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+TXID: 2::C
+COMMIT Erasing txid 2 from file index 2
+Release Rlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+As expected, the process waiting until T0 commits. The process then release it's lock immediately after running the read allowing the final transaction to run. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+

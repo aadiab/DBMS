@@ -1,0 +1,9 @@
+B 1
+R TEST_TABE 13
+R Y 7
+W Y (5, John, 412-111-2222)
+W X (3, John, 412-111-2222)
+M X 412
+D X
+R X 1
+C

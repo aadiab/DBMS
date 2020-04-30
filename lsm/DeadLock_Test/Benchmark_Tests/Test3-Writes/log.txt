@@ -1,0 +1,1829 @@
+
+** BenchTest3: Write operations with deadlock detected:
+- 10 Different transactions, all write (4 times) on independent records, then this WFG is created on the 5th operation:
+	
+	T0 -> T1 -> T2 -> T3 -> T4 -> T5 -> T6 -> T7 -> T8 -> T9 -> T0 
+ 
+- The cycle of 11, starting from T0 and looping back, generates a deadlock.
+- This deadlock is resolved by aborting one transaction, when it happens; the rest will perform normally.
+
+
+** Command: .\myPTA.exe roundrobin 1000 100 DeadLock_Test\Benchmark_Tests\Test3-writes\write0.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write1.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write2.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write3.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write4.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write5.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write6.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write7.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write8.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write9.txt
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+
+W:\Github_rep\CS2550-Project-Team4\lsm>.\myPTA.exe roundrobin 1000 100 DeadLock_Test\Benchmark_Tests\Test3-writes\write0.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write1.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write2.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write3.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write4.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write5.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write6.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write7.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write8.txt DeadLock_Test\Benchmark_Tests\Test3-writes\write9.txt
+Logger Initialized!
+BEGIN Adding txid 0 to file index 0
+Start of 0
+BEGIN Adding txid 1 to file index 1
+Start of 1
+BEGIN Adding txid 2 to file index 2
+Start of 2
+BEGIN Adding txid 3 to file index 3
+Start of 3
+BEGIN Adding txid 4 to file index 4
+Start of 4
+BEGIN Adding txid 5 to file index 5
+Start of 5
+BEGIN Adding txid 6 to file index 6
+Start of 6
+BEGIN Adding txid 7 to file index 7
+Start of 7
+BEGIN Adding txid 8 to file index 8
+Start of 8
+BEGIN Adding txid 9 to file index 9
+Start of 9
+TXID: 0::W TESTERER (0, John, 412-111-2222)
+Called WLOCK
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_0 Lock Type: T-WRITE
+Got record :ID: 0 Name: John             Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Finding record with ID: 0
+Pushing record: ID: 0 Name: John             Phone: 412-111-2222
+(N: 0) Inserting record: ID: 0 Name: John             Phone: 412-111-2222
+TXID: 1::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+Got record :ID: 1 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 1
+Pushing record: ID: 1 Name: John             Phone: 412-111-2222
+(N: 1) Inserting record: ID: 1 Name: John             Phone: 412-111-2222
+TXID: 2::W TESTERER (2, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 2
+Pushing record: ID: 2 Name: John             Phone: 412-111-2222
+(N: 2) Inserting record: ID: 2 Name: John             Phone: 412-111-2222
+TXID: 3::W TESTERER (3, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 3
+Pushing record: ID: 3 Name: John             Phone: 412-111-2222
+(N: 3) Inserting record: ID: 3 Name: John             Phone: 412-111-2222
+TXID: 4::W TESTERER (4, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 4
+Pushing record: ID: 4 Name: John             Phone: 412-111-2222
+(N: 4) Inserting record: ID: 4 Name: John             Phone: 412-111-2222
+TXID: 5::W TESTERER (5, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 5
+Pushing record: ID: 5 Name: John             Phone: 412-111-2222
+(N: 5) Inserting record: ID: 5 Name: John             Phone: 412-111-2222
+TXID: 6::W TESTERER (6, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 6
+Pushing record: ID: 6 Name: John             Phone: 412-111-2222
+(N: 6) Inserting record: ID: 6 Name: John             Phone: 412-111-2222
+TXID: 7::W TESTERER (7, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 7
+Pushing record: ID: 7 Name: John             Phone: 412-111-2222
+(N: 7) Inserting record: ID: 7 Name: John             Phone: 412-111-2222
+TXID: 8::W TESTERER (8, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+testing collison
+Got record :ID: 8 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 8
+Pushing record: ID: 8 Name: John             Phone: 412-111-2222
+(N: 8) Inserting record: ID: 8 Name: John             Phone: 412-111-2222
+TXID: 9::W TESTERER (9, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 9
+Pushing record: ID: 9 Name: John             Phone: 412-111-2222
+(N: 9) Inserting record: ID: 9 Name: John             Phone: 412-111-2222
+Running DeadLock Detection after command 20processed
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, resume normally
+TXID: 0::W TESTERER (0, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_0 Lock Type: T-WRITE
+Got record :ID: 0 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 0
+Pushing record: ID: 0 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 0 Name: John             Phone: 412-111-2222
+TXID: 1::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+Got record :ID: 1 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 1
+Pushing record: ID: 1 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 1 Name: John             Phone: 412-111-2222
+TXID: 2::W TESTERER (2, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 2
+Pushing record: ID: 2 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 2 Name: John             Phone: 412-111-2222
+TXID: 3::W TESTERER (3, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 3
+Pushing record: ID: 3 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 3 Name: John             Phone: 412-111-2222
+TXID: 4::W TESTERER (4, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 4
+Pushing record: ID: 4 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 4 Name: John             Phone: 412-111-2222
+TXID: 5::W TESTERER (5, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 5
+Pushing record: ID: 5 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 5 Name: John             Phone: 412-111-2222
+TXID: 6::W TESTERER (6, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 6
+Pushing record: ID: 6 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 6 Name: John             Phone: 412-111-2222
+TXID: 7::W TESTERER (7, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 7
+Pushing record: ID: 7 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 7 Name: John             Phone: 412-111-2222
+TXID: 8::W TESTERER (8, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+testing collison
+Got record :ID: 8 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 8
+Pushing record: ID: 8 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 8 Name: John             Phone: 412-111-2222
+TXID: 9::W TESTERER (9, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 9
+Pushing record: ID: 9 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 9 Name: John             Phone: 412-111-2222
+TXID: 0::W TESTERER (0, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_0 Lock Type: T-WRITE
+Got record :ID: 0 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 0
+Pushing record: ID: 0 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 0 Name: John             Phone: 412-111-2222
+TXID: 1::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+Got record :ID: 1 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 1
+Pushing record: ID: 1 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 1 Name: John             Phone: 412-111-2222
+TXID: 2::W TESTERER (2, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 2
+Pushing record: ID: 2 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 2 Name: John             Phone: 412-111-2222
+TXID: 3::W TESTERER (3, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 3
+Pushing record: ID: 3 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 3 Name: John             Phone: 412-111-2222
+TXID: 4::W TESTERER (4, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 4
+Pushing record: ID: 4 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 4 Name: John             Phone: 412-111-2222
+TXID: 5::W TESTERER (5, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 5
+Pushing record: ID: 5 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 5 Name: John             Phone: 412-111-2222
+TXID: 6::W TESTERER (6, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 6
+Pushing record: ID: 6 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 6 Name: John             Phone: 412-111-2222
+TXID: 7::W TESTERER (7, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 7
+Pushing record: ID: 7 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 7 Name: John             Phone: 412-111-2222
+TXID: 8::W TESTERER (8, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+testing collison
+Got record :ID: 8 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 8
+Pushing record: ID: 8 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 8 Name: John             Phone: 412-111-2222
+TXID: 9::W TESTERER (9, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 9
+Pushing record: ID: 9 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 9 Name: John             Phone: 412-111-2222
+Running DeadLock Detection after command 40processed
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, resume normally
+TXID: 0::W TESTERER (0, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_0 Lock Type: T-WRITE
+Got record :ID: 0 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 0
+Pushing record: ID: 0 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 0 Name: John             Phone: 412-111-2222
+TXID: 1::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+Got record :ID: 1 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 1
+Pushing record: ID: 1 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 1 Name: John             Phone: 412-111-2222
+TXID: 2::W TESTERER (2, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 2
+Pushing record: ID: 2 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 2 Name: John             Phone: 412-111-2222
+TXID: 3::W TESTERER (3, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 3
+Pushing record: ID: 3 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 3 Name: John             Phone: 412-111-2222
+TXID: 4::W TESTERER (4, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 4
+Pushing record: ID: 4 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 4 Name: John             Phone: 412-111-2222
+TXID: 5::W TESTERER (5, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 5
+Pushing record: ID: 5 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 5 Name: John             Phone: 412-111-2222
+TXID: 6::W TESTERER (6, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 6
+Pushing record: ID: 6 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 6 Name: John             Phone: 412-111-2222
+TXID: 7::W TESTERER (7, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 7
+Pushing record: ID: 7 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 7 Name: John             Phone: 412-111-2222
+TXID: 8::W TESTERER (8, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+testing collison
+Got record :ID: 8 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 8
+Pushing record: ID: 8 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 8 Name: John             Phone: 412-111-2222
+TXID: 9::W TESTERER (9, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 9
+Pushing record: ID: 9 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 9 Name: John             Phone: 412-111-2222
+TXID: 0::W TESTERER (0, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_0 Lock Type: T-WRITE
+Got record :ID: 0 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 0
+Pushing record: ID: 0 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 0 Name: John             Phone: 412-111-2222
+TXID: 1::W TESTERER (2, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+TXID: 2::W TESTERER (2, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 2
+Pushing record: ID: 2 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 2 Name: John             Phone: 412-111-2222
+TXID: 3::W TESTERER (4, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+TXID: 4::W TESTERER (5, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+TXID: 5::W TESTERER (6, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+TXID: 6::W TESTERER (7, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+TXID: 7::W TESTERER (8, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+testing collison
+TXID: 8::W TESTERER (9, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+TXID: 9::W TESTERER (0, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_0 Lock Type: T-WRITE
+Running DeadLock Detection after command 60processed
+Add Edge between 8and 9
+adding new 8 to the graph
+adding new 9 to the graph
+Add Edge between 6and 7
+adding new 6 to the graph
+adding new 7 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 7and 8
+Add Edge between 1and 2
+adding new 1 to the graph
+adding new 2 to the graph
+Add Edge between 3and 4
+adding new 3 to the graph
+Add Edge between 9and 0
+adding new 0 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+8 9 6 7 5 4 1 2 3 0
+Adjacents:
+8 : 9
+9 : 0
+6 : 7
+7 : 8
+5 : 6
+4 : 5
+1 : 2
+2 :
+3 : 4
+0 :
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+8 9 6 7 5 4 1 2 3 0
+Adjacents:
+8 : 9
+9 : 0
+6 : 7
+7 : 8
+5 : 6
+4 : 5
+1 : 2
+2 :
+3 : 4
+0 :
+*************************
+No deadlocks detected, resume normally
+TXID: 0::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+TXID: 1::W TESTERER (2, John, 412-111-2222)
+TXID: 2::W TESTERER (3, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+TXID: 3::W TESTERER (4, John, 412-111-2222)
+TXID: 4::W TESTERER (5, John, 412-111-2222)
+TXID: 5::W TESTERER (6, John, 412-111-2222)
+TXID: 6::W TESTERER (7, John, 412-111-2222)
+TXID: 7::W TESTERER (8, John, 412-111-2222)
+TXID: 8::W TESTERER (9, John, 412-111-2222)
+TXID: 9::W TESTERER (0, John, 412-111-2222)
+TXID: 0::W TESTERER (1, John, 412-111-2222)
+TXID: 1::W TESTERER (2, John, 412-111-2222)
+TXID: 2::W TESTERER (3, John, 412-111-2222)
+TXID: 3::W TESTERER (4, John, 412-111-2222)
+TXID: 4::W TESTERER (5, John, 412-111-2222)
+TXID: 5::W TESTERER (6, John, 412-111-2222)
+TXID: 6::W TESTERER (7, John, 412-111-2222)
+TXID: 7::W TESTERER (8, John, 412-111-2222)
+TXID: 8::W TESTERER (9, John, 412-111-2222)
+TXID: 9::W TESTERER (0, John, 412-111-2222)
+Running DeadLock Detection after command 80processed
+Add Edge between 8and 9
+adding new 8 to the graph
+adding new 9 to the graph
+Add Edge between 6and 7
+adding new 6 to the graph
+adding new 7 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 7and 8
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+8 9 6 7 5 4 0 1 2 3
+Adjacents:
+8 : 9
+9 : 0
+6 : 7
+7 : 8
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+*************************
+Deadlock detected, removing transaction: 8
+erasing node8 from Graph
+Erasing the node from transactions list
+Erasing the node from WFG
+
+*************************
+Transactions:
+9 6 7 5 4 0 1 2 3
+Adjacents:
+9 : 0
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+9 6 7 5 4 0 1 2 3
+Adjacents:
+9 : 0
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+*************************
+DeadLock detected, aborting the following transactions:
+8
+PROCESSING 8 W TESTERER (8,John            ,412-111-2222) (8,John            ,412-111-2222)
+PROCESSING W TESTERER (8,John            ,412-111-2222) (8,John            ,412-111-2222)
+PROCESSING TESTERER (8,John            ,412-111-2222) (8,John            ,412-111-2222)
+ROLLING BACK W
+RESTORING 8,John            ,412-111-2222
+Pushing record: ID: 8 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 8 Name: John             Phone: 412-111-2222
+PROCESSING 8 W TESTERER (8,John            ,412-111-2222) (8,John            ,412-111-2222)
+PROCESSING W TESTERER (8,John            ,412-111-2222) (8,John            ,412-111-2222)
+PROCESSING TESTERER (8,John            ,412-111-2222) (8,John            ,412-111-2222)
+ROLLING BACK W
+RESTORING 8,John            ,412-111-2222
+Pushing record: ID: 8 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 8 Name: John             Phone: 412-111-2222
+PROCESSING 8 W TESTERER (8,John            ,412-111-2222) (8,John            ,412-111-2222)
+PROCESSING W TESTERER (8,John            ,412-111-2222) (8,John            ,412-111-2222)
+PROCESSING TESTERER (8,John            ,412-111-2222) (8,John            ,412-111-2222)
+ROLLING BACK W
+RESTORING 8,John            ,412-111-2222
+Pushing record: ID: 8 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 8 Name: John             Phone: 412-111-2222
+PROCESSING 8 W TESTERER (8,John            ,412-111-2222)
+PROCESSING W TESTERER (8,John            ,412-111-2222)
+PROCESSING TESTERER (8,John            ,412-111-2222)
+ROLLING BACK W
+DELETING 8,John            ,412-111-2222
+Pushing record: ID: 8 Name:                  Phone:
+(N: 10) Inserting record: ID: 8 Name:                  Phone:
+PROCESSING 8 T
+PROCESSING T
+PROCESSING T
+ROLLING BACK T
+*** NEW WAITING OP: W TESTERER (9, John, 412-111-2222)
+Release Wlock
+release lock transaction: 8
+Lock removed
+release lock transaction: 8
+Lock removed
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Lock removed
+Handle result: 7
+WAITING OP: W TESTERER (8, John, 412-111-2222)
+Got record :ID: 8 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 8
+Pushing record: ID: 8 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 8 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+testing collison
+Got record :ID: 8 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 8
+Pushing record: ID: 8 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 8 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+testing collison
+Got record :ID: 8 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 8
+Pushing record: ID: 8 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 8 Name: John             Phone: 412-111-2222
+TXID: 0::W TESTERER (1, John, 412-111-2222)
+TXID: 1::W TESTERER (2, John, 412-111-2222)
+TXID: 2::W TESTERER (3, John, 412-111-2222)
+TXID: 3::W TESTERER (4, John, 412-111-2222)
+TXID: 4::W TESTERER (5, John, 412-111-2222)
+TXID: 5::W TESTERER (6, John, 412-111-2222)
+TXID: 6::W TESTERER (7, John, 412-111-2222)
+TXID: 7::W TESTERER (8, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+testing collison
+Got record :ID: 8 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 8
+Pushing record: ID: 8 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 8 Name: John             Phone: 412-111-2222
+TXID: 8::W TESTERER (9, John, 412-111-2222)
+TXID: 9::W TESTERER (0, John, 412-111-2222)
+TXID: 0::W TESTERER (1, John, 412-111-2222)
+TXID: 1::W TESTERER (2, John, 412-111-2222)
+TXID: 2::W TESTERER (3, John, 412-111-2222)
+TXID: 3::C
+Add Edge between 6and 7
+adding new 6 to the graph
+adding new 7 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, resume normally
+TXID: 4::C
+Add Edge between 6and 7
+adding new 6 to the graph
+adding new 7 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, resume normally
+TXID: 5::C
+Add Edge between 6and 7
+adding new 6 to the graph
+adding new 7 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, resume normally
+TXID: 6::C
+Add Edge between 6and 7
+adding new 6 to the graph
+adding new 7 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, resume normally
+TXID: 7::C
+Add Edge between 6and 7
+adding new 6 to the graph
+adding new 7 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+6 7 5 4 0 1 2 3 9
+Adjacents:
+6 : 7
+7 :
+5 : 6
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, resume normally
+COMMIT txid 7 from file index 7
+Release Wlock
+release lock transaction: 7
+Removing last Lock on a data element: TESTERER_8
+release lock transaction: 7
+Lock removed
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Lock removed
+Handle result: 6
+WAITING OP: W TESTERER (7, John, 412-111-2222)
+Got record :ID: 7 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 7
+Pushing record: ID: 7 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 7 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 7
+Pushing record: ID: 7 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 7 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 7
+Pushing record: ID: 7 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 7 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 7
+Pushing record: ID: 7 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 7 Name: John             Phone: 412-111-2222
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+adding new 4 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+5 6 4 0 1 2 3 9
+Adjacents:
+5 : 6
+6 :
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+5 6 4 0 1 2 3 9
+Adjacents:
+5 : 6
+6 :
+4 : 5
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 6
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Lock removed
+Handle result: NONE
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Lock removed
+Handle result: 5
+WAITING OP: W TESTERER (6, John, 412-111-2222)
+Got record :ID: 6 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 6
+Pushing record: ID: 6 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 6 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 6
+Pushing record: ID: 6 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 6 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 6
+Pushing record: ID: 6 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 6 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 6
+Pushing record: ID: 6 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 6 Name: John             Phone: 412-111-2222
+Add Edge between 4and 5
+adding new 4 to the graph
+adding new 5 to the graph
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+4 5 0 1 2 3 9
+Adjacents:
+4 : 5
+5 :
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+4 5 0 1 2 3 9
+Adjacents:
+4 : 5
+5 :
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+9 : 0
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 5
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Lock removed
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Lock removed
+Handle result: 4
+WAITING OP: W TESTERER (5, John, 412-111-2222)
+Got record :ID: 5 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 5
+Pushing record: ID: 5 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 5 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 5
+Pushing record: ID: 5 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 5 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 5
+Pushing record: ID: 5 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 5 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 5
+Pushing record: ID: 5 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 5 Name: John             Phone: 412-111-2222
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 3and 4
+adding new 4 to the graph
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1 2 3 4 9
+Adjacents:
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+4 :
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1 2 3 4 9
+Adjacents:
+0 : 1
+1 : 2
+2 : 3
+3 : 4
+4 :
+9 : 0
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 4
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Lock removed
+Handle result: NONE
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Lock removed
+Handle result: 3
+WAITING OP: W TESTERER (4, John, 412-111-2222)
+Got record :ID: 4 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 4
+Pushing record: ID: 4 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 4 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 4
+Pushing record: ID: 4 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 4 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 4
+Pushing record: ID: 4 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 4 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 4
+Pushing record: ID: 4 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 4 Name: John             Phone: 412-111-2222
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 2and 3
+adding new 3 to the graph
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1 2 3 9
+Adjacents:
+0 : 1
+1 : 2
+2 : 3
+3 :
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1 2 3 9
+Adjacents:
+0 : 1
+1 : 2
+2 : 3
+3 :
+9 : 0
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 3
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Lock removed
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Lock removed
+Handle result: 2
+WAITING OP: W TESTERER (3, John, 412-111-2222)
+Got record :ID: 3 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 3
+Pushing record: ID: 3 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 3 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 3
+Pushing record: ID: 3 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 3 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 3
+Pushing record: ID: 3 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 3 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 3
+Pushing record: ID: 3 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 3 Name: John             Phone: 412-111-2222
+TXID: 8::C
+TXID: 9::W TESTERER (0, John, 412-111-2222)
+Running DeadLock Detection after command 100processed
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, resume normally
+TXID: 0::C
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, resume normally
+TXID: 1::C
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, resume normally
+TXID: 2::C
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 2
+adding new 2 to the graph
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1 2 9
+Adjacents:
+0 : 1
+1 : 2
+2 :
+9 : 0
+*************************
+No deadlocks detected, resume normally
+COMMIT txid 2 from file index 2
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Lock removed
+Handle result: 1
+WAITING OP: W TESTERER (2, John, 412-111-2222)
+Got record :ID: 2 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 2
+Pushing record: ID: 2 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 2 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 2
+Pushing record: ID: 2 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 2 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 2
+Pushing record: ID: 2 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 2 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 2
+Pushing record: ID: 2 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 2 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 2
+Pushing record: ID: 2 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 2 Name: John             Phone: 412-111-2222
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 9and 0
+adding new 9 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1 9
+Adjacents:
+0 : 1
+1 :
+9 : 0
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+0 1 9
+Adjacents:
+0 : 1
+1 :
+9 : 0
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 1
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Lock removed
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Lock removed
+Handle result: 0
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 1
+Pushing record: ID: 1 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 1 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+Got record :ID: 1 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 1
+Pushing record: ID: 1 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 1 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+Got record :ID: 1 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 1
+Pushing record: ID: 1 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 1 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+Got record :ID: 1 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 1
+Pushing record: ID: 1 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 1 Name: John             Phone: 412-111-2222
+Add Edge between 9and 0
+adding new 9 to the graph
+adding new 0 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+9 0
+Adjacents:
+9 : 0
+0 :
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+9 0
+Adjacents:
+9 : 0
+0 :
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 0
+Release Wlock
+release lock transaction: 0
+Removing last Lock on a data element: TESTERER_1
+release lock transaction: 0
+Handle result: NONE
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Lock removed
+Handle result: 9
+WAITING OP: W TESTERER (0, John, 412-111-2222)
+Got record :ID: 0 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 0
+Pushing record: ID: 0 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 0 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_0 Lock Type: T-WRITE
+Got record :ID: 0 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 0
+Pushing record: ID: 0 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 0 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_0 Lock Type: T-WRITE
+Got record :ID: 0 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 0
+Pushing record: ID: 0 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 0 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_0 Lock Type: T-WRITE
+Got record :ID: 0 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 0
+Pushing record: ID: 0 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 0 Name: John             Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_0 Lock Type: T-WRITE
+Got record :ID: 0 Name: John             Phone: 412-111-2222
+LSM Writing...
+Finding record with ID: 0
+Pushing record: ID: 0 Name: John             Phone: 412-111-2222
+(N: 10) Inserting record: ID: 0 Name: John             Phone: 412-111-2222
+TXID: 9::C
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, resume normally
+COMMIT txid 9 from file index 9
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+
+**********************************************************
+Statistics:
+Commands:
+Total: 104
+Committed: 99
+Aborted: 5
+Percantage of Success: 95.1923%
+
+Reads:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Writes:
+Total: 84
+Committed: 79
+Aborted: 5
+Percantage of Success: 94.0476%
+
+MReads:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Erase:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Deletes:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+
+**********************************************************
+Done Printing Transaction List

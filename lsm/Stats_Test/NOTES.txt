@@ -1,0 +1,11 @@
+
+
+** This folder was provided to demonstrate the correct work of Statistics. It is meant to be done on small
+examples to be able to actually count operations.
+
+** Please note that this was done at the end after all other test cases. Which means the log of 
+all other test cases MAY NOT contain the right stats.
+
+** Also note that if you run any of thoses tests, you should get the correct stats (not the ones in log files).
+
+- Thank You.

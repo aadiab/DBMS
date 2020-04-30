@@ -1,0 +1,1146 @@
+Multiple Erase Erase Interactions
+
+Expected: The first transaction has an erase lock on the file. All other transactions will wait in order until this erase lock is removed. So T0 Run first then T1 and so on and so forth. 
+Actual: T0's first erase puts a lock on the record causing all other erases on this record id to be put on hold. Since these locks blocked the transactions, the blocked transaction's operations were put in a delayed list. Once the transaction was allowed to run again after T0 released it's locks, the later transactions were able to acquire locks to run all it's operations and commit. In the end, all operations ran in serial execution and no dirty reads.
+
+Executed: ./myPTA roundrobin 1000 100 Concurrency_Test/Benchmark_Tests/Test4/test1.txt Concurrency_Test/Benchmark_Tests/Test4/test2.txt Concurrency_Test/Benchmark_Tests/Test4/test3.txt Concurrency_Test/Benchmark_Tests/Test4/test4.txt Concurrency_Test/Benchmark_Tests/Test4/test5.txt Concurrency_Test/Benchmark_Tests/Test4/test6.txt Concurrency_Test/Benchmark_Tests/Test4/test7.txt Concurrency_Test/Benchmark_Tests/Test4/test8.txt Concurrency_Test/Benchmark_Tests/Test4/test9.txt Concurrency_Test/Benchmark_Tests/Test4/test10.txt
+
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+BEGIN Adding txid 2 to file index 2
+BEGIN Adding txid 3 to file index 3
+BEGIN Adding txid 4 to file index 4
+BEGIN Adding txid 5 to file index 5
+BEGIN Adding txid 6 to file index 6
+BEGIN Adding txid 7 to file index 7
+BEGIN Adding txid 8 to file index 8
+BEGIN Adding txid 9 to file index 9
+TXID: 0::E TESTERER 1
+Called ELOCK
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+TXID: 2::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+TXID: 3::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+TXID: 4::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+TXID: 5::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+TXID: 6::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+TXID: 7::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+TXID: 8::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+TXID: 9::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+TXID: 0::E TESTERER 2
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 2
+TXID: 2::E TESTERER 2
+TXID: 3::E TESTERER 2
+TXID: 4::E TESTERER 2
+TXID: 5::E TESTERER 2
+TXID: 6::E TESTERER 2
+TXID: 7::E TESTERER 2
+TXID: 8::E TESTERER 2
+TXID: 9::E TESTERER 2
+TXID: 0::E TESTERER 3
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 3
+TXID: 2::E TESTERER 3
+TXID: 3::E TESTERER 3
+TXID: 4::E TESTERER 3
+TXID: 5::E TESTERER 3
+TXID: 6::E TESTERER 3
+TXID: 7::E TESTERER 3
+TXID: 8::E TESTERER 3
+TXID: 9::E TESTERER 3
+TXID: 0::E TESTERER 4
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 4
+TXID: 2::E TESTERER 4
+TXID: 3::E TESTERER 4
+TXID: 4::E TESTERER 4
+TXID: 5::E TESTERER 4
+TXID: 6::E TESTERER 4
+TXID: 7::E TESTERER 4
+TXID: 8::E TESTERER 4
+TXID: 9::E TESTERER 4
+TXID: 0::E TESTERER 5
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 5
+TXID: 2::E TESTERER 5
+TXID: 3::E TESTERER 5
+TXID: 4::E TESTERER 5
+TXID: 5::E TESTERER 5
+TXID: 6::E TESTERER 5
+TXID: 7::E TESTERER 5
+TXID: 8::E TESTERER 5
+TXID: 9::E TESTERER 5
+TXID: 0::E TESTERER 6
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 6
+TXID: 2::E TESTERER 6
+TXID: 3::E TESTERER 6
+TXID: 4::E TESTERER 6
+TXID: 5::E TESTERER 6
+TXID: 6::E TESTERER 6
+TXID: 7::E TESTERER 6
+TXID: 8::E TESTERER 6
+TXID: 9::E TESTERER 6
+TXID: 0::E TESTERER 7
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 7
+TXID: 2::E TESTERER 7
+TXID: 3::E TESTERER 7
+TXID: 4::E TESTERER 7
+TXID: 5::E TESTERER 7
+TXID: 6::E TESTERER 7
+TXID: 7::E TESTERER 7
+TXID: 8::E TESTERER 7
+TXID: 9::E TESTERER 7
+TXID: 0::E TESTERER 8
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 8
+TXID: 2::E TESTERER 8
+TXID: 3::E TESTERER 8
+TXID: 4::E TESTERER 8
+TXID: 5::E TESTERER 8
+TXID: 6::E TESTERER 8
+TXID: 7::E TESTERER 8
+TXID: 8::E TESTERER 8
+TXID: 9::E TESTERER 8
+TXID: 0::E TESTERER 9
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_9 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 9
+TXID: 2::E TESTERER 9
+TXID: 3::E TESTERER 9
+TXID: 4::E TESTERER 9
+TXID: 5::E TESTERER 9
+TXID: 6::E TESTERER 9
+TXID: 7::E TESTERER 9
+TXID: 8::E TESTERER 9
+TXID: 9::E TESTERER 9
+TXID: 0::E TESTERER 10
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_10 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 10
+TXID: 2::E TESTERER 10
+TXID: 3::E TESTERER 10
+TXID: 4::E TESTERER 10
+TXID: 5::E TESTERER 10
+TXID: 6::E TESTERER 10
+TXID: 7::E TESTERER 10
+TXID: 8::E TESTERER 10
+TXID: 9::E TESTERER 10
+TXID: 0::E TESTERER 11
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_11 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 11
+TXID: 2::E TESTERER 11
+TXID: 3::E TESTERER 11
+TXID: 4::E TESTERER 11
+TXID: 5::E TESTERER 11
+TXID: 6::E TESTERER 11
+TXID: 7::E TESTERER 11
+TXID: 8::E TESTERER 11
+TXID: 9::E TESTERER 11
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: E TESTERER 1
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_9 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_10 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_11 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: 2
+WAITING OP: E TESTERER 1
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_9 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_10 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_11 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 2::C
+COMMIT Erasing txid 2 from file index 2
+Release Elock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Elock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Elock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Elock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Elock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Elock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Elock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Elock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Elock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Elock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Elock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: 3
+WAITING OP: E TESTERER 1
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_9 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_10 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_11 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 3::C
+COMMIT Erasing txid 3 from file index 3
+Release Elock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Elock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Elock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Elock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Elock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Elock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Elock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Elock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Elock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Elock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Elock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: 4
+WAITING OP: E TESTERER 1
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_9 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_10 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_11 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 4::C
+COMMIT Erasing txid 4 from file index 4
+Release Elock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Elock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Elock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Elock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Elock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Elock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Elock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Elock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Elock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Elock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Elock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: 5
+WAITING OP: E TESTERER 1
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_9 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_10 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_11 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 5::C
+COMMIT Erasing txid 5 from file index 5
+Release Elock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Elock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Elock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Elock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Elock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Elock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Elock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Elock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Elock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Elock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Elock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: 6
+WAITING OP: E TESTERER 1
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_9 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_10 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_11 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 6::C
+COMMIT Erasing txid 6 from file index 6
+Release Elock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Elock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Elock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Elock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Elock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Elock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Elock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Elock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Elock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Elock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Elock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: 7
+WAITING OP: E TESTERER 1
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_9 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_10 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_11 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 7::C
+COMMIT Erasing txid 7 from file index 7
+Release Elock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Elock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Elock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Elock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Elock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Elock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Elock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Elock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Elock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Elock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Elock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: 8
+WAITING OP: E TESTERER 1
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_9 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_10 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_11 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 8::C
+COMMIT Erasing txid 8 from file index 8
+Release Elock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Elock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Elock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Elock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Elock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Elock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Elock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Elock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Elock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Elock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Elock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: 9
+WAITING OP: E TESTERER 1
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_2 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_3 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_4 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_5 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_6 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_7 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_8 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_9 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_10 Lock Type: T-ERASE
+LSM Erasing...
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_11 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 9::C
+COMMIT Erasing txid 9 from file index 9
+Release Elock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Elock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Elock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Elock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Elock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Elock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Elock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Elock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Elock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Elock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Elock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+

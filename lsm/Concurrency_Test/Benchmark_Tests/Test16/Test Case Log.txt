@@ -1,0 +1,1748 @@
+Multiple Read Write Read Interactions
+
+Expected: All the reads from the multiple transaction will run first then the writes will run. 
+Actaul: Since reads are allowed to run in parallel and writes are blocked by reads all the reads execute first then the writes execute. So what ever a transaction reads will be the same for multiple reads. T0's read request blocks T1's write request but allows T2's read request etc.
+
+Executed: ./myPTA roundrobin 1000 100 Concurrency_Test/Benchmark_Tests/Test16/test1.txt Concurrency_Test/Benchmark_Tests/Test16/test2.txt Concurrency_Test/Benchmark_Tests/Test16/test3.txt Concurrency_Test/Benchmark_Tests/Test16/test4.txt Concurrency_Test/Benchmark_Tests/Test16/test5.txt Concurrency_Test/Benchmark_Tests/Test16/test6.txt Concurrency_Test/Benchmark_Tests/Test16/test7.txt Concurrency_Test/Benchmark_Tests/Test16/test8.txt Concurrency_Test/Benchmark_Tests/Test16/test9.txt Concurrency_Test/Benchmark_Tests/Test16/test10.txt 
+
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+BEGIN Adding txid 2 to file index 2
+BEGIN Adding txid 3 to file index 3
+BEGIN Adding txid 4 to file index 4
+BEGIN Adding txid 5 to file index 5
+BEGIN Adding txid 6 to file index 6
+BEGIN Adding txid 7 to file index 7
+BEGIN Adding txid 8 to file index 8
+BEGIN Adding txid 9 to file index 9
+TXID: 0::R TESTERER 1
+Called RLOCK
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+TXID: 2::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+TXID: 4::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+TXID: 6::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+TXID: 8::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+TXID: 0::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (2, John, 412-111-2222)
+TXID: 2::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (2, John, 412-111-2222)
+TXID: 4::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (2, John, 412-111-2222)
+TXID: 6::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (2, John, 412-111-2222)
+TXID: 8::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_1 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (2, John, 412-111-2222)
+TXID: 0::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (3, John, 412-111-2222)
+TXID: 2::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (3, John, 412-111-2222)
+TXID: 4::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (3, John, 412-111-2222)
+TXID: 6::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (3, John, 412-111-2222)
+TXID: 8::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (3, John, 412-111-2222)
+TXID: 0::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (4, John, 412-111-2222)
+TXID: 2::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (4, John, 412-111-2222)
+TXID: 4::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (4, John, 412-111-2222)
+TXID: 6::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (4, John, 412-111-2222)
+TXID: 8::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_2 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (4, John, 412-111-2222)
+TXID: 0::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (5, John, 412-111-2222)
+TXID: 2::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (5, John, 412-111-2222)
+TXID: 4::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (5, John, 412-111-2222)
+TXID: 6::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (5, John, 412-111-2222)
+TXID: 8::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (5, John, 412-111-2222)
+TXID: 0::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (6, John, 412-111-2222)
+TXID: 2::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (6, John, 412-111-2222)
+TXID: 4::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (6, John, 412-111-2222)
+TXID: 6::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (6, John, 412-111-2222)
+TXID: 8::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_3 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (6, John, 412-111-2222)
+TXID: 0::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (7, John, 412-111-2222)
+TXID: 2::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (7, John, 412-111-2222)
+TXID: 4::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (7, John, 412-111-2222)
+TXID: 6::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (7, John, 412-111-2222)
+TXID: 8::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (7, John, 412-111-2222)
+TXID: 0::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (8, John, 412-111-2222)
+TXID: 2::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (8, John, 412-111-2222)
+TXID: 4::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (8, John, 412-111-2222)
+TXID: 6::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (8, John, 412-111-2222)
+TXID: 8::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_4 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (8, John, 412-111-2222)
+TXID: 0::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (9, John, 412-111-2222)
+TXID: 2::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (9, John, 412-111-2222)
+TXID: 4::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (9, John, 412-111-2222)
+TXID: 6::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (9, John, 412-111-2222)
+TXID: 8::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (9, John, 412-111-2222)
+TXID: 0::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (10, John, 412-111-2222)
+TXID: 2::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (10, John, 412-111-2222)
+TXID: 4::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (10, John, 412-111-2222)
+TXID: 6::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (10, John, 412-111-2222)
+TXID: 8::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_5 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (10, John, 412-111-2222)
+TXID: 0::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (11, John, 412-111-2222)
+TXID: 2::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::W TESTERER (11, John, 412-111-2222)
+TXID: 4::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::W TESTERER (11, John, 412-111-2222)
+TXID: 6::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::W TESTERER (11, John, 412-111-2222)
+TXID: 8::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::W TESTERER (11, John, 412-111-2222)
+TXID: 0::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::C
+TXID: 2::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::C
+TXID: 4::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::C
+TXID: 6::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::C
+TXID: 8::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_6 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::C
+TXID: 0::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_7 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_8 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_9 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_11 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: NONE
+TXID: 2::C
+COMMIT Erasing txid 2 from file index 2
+Release Rlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+Release Rlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: NONE
+TXID: 4::C
+COMMIT Erasing txid 4 from file index 4
+Release Rlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: NONE
+TXID: 6::C
+COMMIT Erasing txid 6 from file index 6
+Release Rlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: NONE
+TXID: 8::C
+COMMIT Erasing txid 8 from file index 8
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+release lock transaction: 8
+Handle result: 1
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 1) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 2) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 3) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 4) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 5) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 6) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 7) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 8) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: T-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 9) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: T-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 10) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+Running Delayed Commit
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: 3
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: T-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: T-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+Running Delayed Commit
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: NONE
+Release Wlock
+release lock transaction: 3
+release lock transaction: 3
+Handle result: 5
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: T-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: T-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+Running Delayed Commit
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: NONE
+Release Wlock
+release lock transaction: 5
+release lock transaction: 5
+Handle result: 7
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: T-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: T-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+Running Delayed Commit
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: NONE
+Release Wlock
+release lock transaction: 7
+release lock transaction: 7
+Handle result: 9
+WAITING OP: W TESTERER (1, John, 412-111-2222)
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: T-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: T-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: T-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: T-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: T-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: T-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: T-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: T-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: T-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: T-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+Running Delayed Commit
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+Release Wlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: NONE
+

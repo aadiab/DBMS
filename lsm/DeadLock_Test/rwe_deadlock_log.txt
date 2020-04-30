@@ -1,0 +1,269 @@
+
+** Case: Mix of R/W/E operations with DeadLock (Transaction Mode):
+
+** Command: .\myPTA.exe roundrobin 1000 100 DeadLock_Test\rwe0.txt DeadLock_Test\rwe1.txt
+** Scenario: 2 Transactions (T0, T1), create a deadlock, resolved by removing T1.
+** You can search "WFG", or "deadlock" to see the process before and after resolving the deadlock. 
+** Below is the complete log for running the command above. 
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+W:\Github_rep\CS2550-Project-Team4\lsm>.\myPTA.exe roundrobin 1000 100 DeadLock_Test\rwe0.txt DeadLock_Test\rwe1.txt
+Logger Initialized!
+BEGIN Adding txid 0 to file index 0
+Start of 0
+BEGIN Adding txid 1 to file index 1
+Start of 1
+TXID: 0::W TESTERER (0, John, 411-111-2222)
+Called WLOCK
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_0 Lock Type: T-WRITE
+Got record :ID: 0 Name: John             Phone: 411-111-2222
+LSM Writing...
+New table: TESTERER
+Finding record with ID: 0
+Pushing record: ID: 0 Name: John             Phone: 411-111-2222
+(N: 0) Inserting record: ID: 0 Name: John             Phone: 411-111-2222
+TXID: 1::W TESTERER (1, John, 400-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: T-WRITE
+Got record :ID: 1 Name: John             Phone: 400-111-2222
+LSM Writing...
+Finding record with ID: 1
+Pushing record: ID: 1 Name: John             Phone: 400-111-2222
+(N: 1) Inserting record: ID: 1 Name: John             Phone: 400-111-2222
+TXID: 0::E TESTERER 1
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_1 Lock Type: T-ERASE
+TXID: 1::E TESTERER 0
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_0 Lock Type: T-ERASE
+TXID: 0::R TESTERER2 13
+TXID: 1::R TESTERER2 13
+TXID: 0::R TESTERER2 13
+TXID: 1::R TESTERER2 13
+TXID: 0::R TESTERER2 13
+TXID: 1::R TESTERER2 13
+TXID: 0::R TESTERER2 13
+TXID: 1::R TESTERER2 13
+TXID: 0::R TESTERER2 13
+TXID: 1::R TESTERER2 13
+TXID: 0::R TESTERER2 13
+TXID: 1::R TESTERER2 13
+TXID: 0::R TESTERER2 13
+TXID: 1::R TESTERER2 13
+Running DeadLock Detection after command 20processed
+Add Edge between 0and 1
+adding new 0 to the graph
+adding new 1 to the graph
+Add Edge between 1and 0
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+0 1
+Adjacents:
+0 : 1
+1 : 0
+*************************
+Deadlock detected, removing transaction: 0
+erasing node0 from Graph
+Erasing the node from transactions list
+Erasing the node from WFG
+
+*************************
+Transactions:
+1
+Adjacents:
+1 :
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+1
+Adjacents:
+1 :
+*************************
+DeadLock detected, aborting the following transactions:
+0
+PROCESSING 0 W TESTERER (0,John            ,411-111-2222)
+PROCESSING W TESTERER (0,John            ,411-111-2222)
+PROCESSING TESTERER (0,John            ,411-111-2222)
+ROLLING BACK W
+DELETING 0,John            ,411-111-2222
+Pushing record: ID: 0 Name:                  Phone:
+(N: 2) Inserting record: ID: 0 Name:                  Phone:
+PROCESSING 0 CTBL TESTERER
+PROCESSING CTBL TESTERER
+PROCESSING TESTERER
+ROLLING BACK CTBL
+PROCESSING 0 T
+PROCESSING T
+PROCESSING T
+ROLLING BACK T
+*** NEW WAITING OP: E TESTERER 1
+R TESTERER2 13 this is what I will update on ***********************R
+R TESTERER2 13 this is what I will update on ***********************R
+R TESTERER2 13 this is what I will update on ***********************R
+R TESTERER2 13 this is what I will update on ***********************R
+R TESTERER2 13 this is what I will update on ***********************R
+R TESTERER2 13 this is what I will update on ***********************R
+R TESTERER2 13 this is what I will update on ***********************R
+Release Elock
+release lock transaction: 0
+Lock removed
+release lock transaction: 0
+Lock removed
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Lock removed
+Handle result: 1
+WAITING OP: E TESTERER 0
+LSM Erasing...
+Called RLOCK
+Acquire Lock data: TESTERER2 Lock Type: T-READ
+Acquire Lock data: TESTERER2_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-READ
+Acquire Lock data: TESTERER2_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-READ
+Acquire Lock data: TESTERER2_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-READ
+Acquire Lock data: TESTERER2_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-READ
+Acquire Lock data: TESTERER2_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-READ
+Acquire Lock data: TESTERER2_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-READ
+Acquire Lock data: TESTERER2_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER2 13
+TXID: 1::R TESTERER2 13
+Called RLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-READ
+Acquire Lock data: TESTERER2_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER2 13
+TXID: 1::R TESTERER2 13
+Called RLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-READ
+Acquire Lock data: TESTERER2_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::R TESTERER2 13
+TXID: 1::R TESTERER2 13
+Called RLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-READ
+Acquire Lock data: TESTERER2_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::C
+TXID: 1::C
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, resume normally
+COMMIT txid 1 from file index 1
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+
+**********************************************************
+Statistics:
+Commands:
+Total: 28
+Committed: 16
+Aborted: 12
+Percantage of Success: 57.1429%
+
+Reads:
+Total: 20
+Committed: 10
+Aborted: 10
+Percantage of Success: 50%
+
+Writes:
+Total: 2
+Committed: 1
+Aborted: 1
+Percantage of Success: 50%
+
+MReads:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Erase:
+Total: 2
+Committed: 1
+Aborted: 1
+Percantage of Success: 50%
+
+Deletes:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+
+**********************************************************
+Done Printing Transaction List

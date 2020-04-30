@@ -1,0 +1,1452 @@
+
+** BenchTest5: Delete operations with deadlock detected:
+- The nature of this test is generally similar to TestBench3
+- 10 Different transactions, they start with read ops, then a deadlock happens on Delete when each tries to delete the table another resource is holding.
+- The following WFG is created:
+	
+	T0 -> T1 -> T2 -> T3 -> T4 -> T5 -> T6 -> T7 -> T8 -> T9 -> T0 
+ 
+- The cycle of 11, starting from T0 and looping back, generates a deadlock.
+- This deadlock is resolved by aborting one transaction, when it happens; the rest will perform normally.
+
+
+** Command: .\myPTA.exe roundrobin 1000 100 DeadLock_Test\Benchmark_Tests\Test5-Delete\delete0.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete1.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete2.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete3.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete4.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete5.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete6.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete7.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete8.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete9.txt
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+
+W:\Github_rep\CS2550-Project-Team4\lsm>.\myPTA.exe roundrobin 1000 100 DeadLock_Test\Benchmark_Tests\Test5-Delete\delete0.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete1.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete2.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete3.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete4.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete5.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete6.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete7.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete8.txt DeadLock_Test\Benchmark_Tests\Test5-Delete\delete9.txt
+Logger Initialized!
+BEGIN Adding txid 0 to file index 0
+Start of 0
+BEGIN Adding txid 1 to file index 1
+Start of 1
+BEGIN Adding txid 2 to file index 2
+Start of 2
+BEGIN Adding txid 3 to file index 3
+Start of 3
+BEGIN Adding txid 4 to file index 4
+Start of 4
+BEGIN Adding txid 5 to file index 5
+Start of 5
+BEGIN Adding txid 6 to file index 6
+Start of 6
+BEGIN Adding txid 7 to file index 7
+Start of 7
+BEGIN Adding txid 8 to file index 8
+Start of 8
+BEGIN Adding txid 9 to file index 9
+Start of 9
+TXID: 0::R TESTERER0 10
+Called RLOCK
+Acquire Lock data: TESTERER0 Lock Type: T-READ
+Acquire Lock data: TESTERER0_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::R TESTERER1 10
+Called RLOCK
+Acquire Lock data: TESTERER1 Lock Type: T-READ
+Acquire Lock data: TESTERER1_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER2 10
+Called RLOCK
+Acquire Lock data: TESTERER2 Lock Type: T-READ
+Acquire Lock data: TESTERER2_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::R TESTERER3 10
+Called RLOCK
+Acquire Lock data: TESTERER3 Lock Type: T-READ
+Acquire Lock data: TESTERER3_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER4 10
+Called RLOCK
+Acquire Lock data: TESTERER4 Lock Type: T-READ
+testing collison
+Acquire Lock data: TESTERER4_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::R TESTERER5 10
+Called RLOCK
+Acquire Lock data: TESTERER5 Lock Type: T-READ
+Acquire Lock data: TESTERER5_10 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER6 10
+Called RLOCK
+Acquire Lock data: TESTERER6 Lock Type: T-READ
+Acquire Lock data: TESTERER6_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::R TESTERER7 10
+Called RLOCK
+Acquire Lock data: TESTERER7 Lock Type: T-READ
+Acquire Lock data: TESTERER7_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER8 10
+Called RLOCK
+Acquire Lock data: TESTERER8 Lock Type: T-READ
+Acquire Lock data: TESTERER8_10 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::R TESTERER9 10
+Called RLOCK
+Acquire Lock data: TESTERER9 Lock Type: T-READ
+Acquire Lock data: TESTERER9_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Running DeadLock Detection after command 20processed
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, resume normally
+TXID: 0::R TESTERER0 10
+Called RLOCK
+FOUND TABLE TESTERER0
+Acquire Lock data: TESTERER0 Lock Type: T-READ
+Acquire Lock data: TESTERER0_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::R TESTERER1 10
+Called RLOCK
+FOUND TABLE TESTERER1
+Acquire Lock data: TESTERER1 Lock Type: T-READ
+Acquire Lock data: TESTERER1_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER2 10
+Called RLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-READ
+Acquire Lock data: TESTERER2_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::R TESTERER3 10
+Called RLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-READ
+Acquire Lock data: TESTERER3_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 4::R TESTERER4 10
+Called RLOCK
+FOUND TABLE TESTERER4
+Acquire Lock data: TESTERER4 Lock Type: T-READ
+testing collison
+Acquire Lock data: TESTERER4_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 5::R TESTERER5 10
+Called RLOCK
+FOUND TABLE TESTERER5
+Acquire Lock data: TESTERER5 Lock Type: T-READ
+Acquire Lock data: TESTERER5_10 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 6::R TESTERER6 10
+Called RLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-READ
+Acquire Lock data: TESTERER6_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 7::R TESTERER7 10
+Called RLOCK
+FOUND TABLE TESTERER7
+Acquire Lock data: TESTERER7 Lock Type: T-READ
+Acquire Lock data: TESTERER7_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 8::R TESTERER8 10
+Called RLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-READ
+Acquire Lock data: TESTERER8_10 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 9::R TESTERER9 10
+Called RLOCK
+FOUND TABLE TESTERER9
+Acquire Lock data: TESTERER9 Lock Type: T-READ
+Acquire Lock data: TESTERER9_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 0::D TESTERER1
+Called DLOCK
+FOUND TABLE TESTERER1
+Acquire Lock data: TESTERER1 Lock Type: T-DELETE
+TXID: 1::D TESTERER2
+Called DLOCK
+FOUND TABLE TESTERER2
+Acquire Lock data: TESTERER2 Lock Type: T-DELETE
+TXID: 2::D TESTERER3
+Called DLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-DELETE
+TXID: 3::D TESTERER4
+Called DLOCK
+FOUND TABLE TESTERER4
+Acquire Lock data: TESTERER4 Lock Type: T-DELETE
+testing collison
+TXID: 4::D TESTERER5
+Called DLOCK
+FOUND TABLE TESTERER5
+Acquire Lock data: TESTERER5 Lock Type: T-DELETE
+TXID: 5::D TESTERER6
+Called DLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-DELETE
+TXID: 6::D TESTERER7
+Called DLOCK
+FOUND TABLE TESTERER7
+Acquire Lock data: TESTERER7 Lock Type: T-DELETE
+TXID: 7::D TESTERER8
+Called DLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-DELETE
+TXID: 8::D TESTERER9
+Called DLOCK
+FOUND TABLE TESTERER9
+Acquire Lock data: TESTERER9 Lock Type: T-DELETE
+TXID: 9::D TESTERER0
+Called DLOCK
+FOUND TABLE TESTERER0
+Acquire Lock data: TESTERER0 Lock Type: T-DELETE
+Running DeadLock Detection after command 40processed
+Add Edge between 2and 3
+adding new 2 to the graph
+adding new 3 to the graph
+Add Edge between 3and 4
+adding new 4 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+adding new 8 to the graph
+Add Edge between 8and 9
+adding new 9 to the graph
+Add Edge between 9and 0
+adding new 0 to the graph
+Add Edge between 0and 1
+adding new 1 to the graph
+Add Edge between 1and 2
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+Add Edge between 6and 7
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+2 3 4 7 8 9 0 1 5 6
+Adjacents:
+2 : 3
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 : 0
+0 : 1
+1 : 2
+5 : 6
+6 : 7
+*************************
+Deadlock detected, removing transaction: 2
+erasing node2 from Graph
+Erasing the node from transactions list
+Erasing the node from WFG
+
+*************************
+Transactions:
+3 4 7 8 9 0 1 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 : 0
+0 : 1
+1 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 0 1 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 : 0
+0 : 1
+1 :
+5 : 6
+6 : 7
+*************************
+DeadLock detected, aborting the following transactions:
+2
+PROCESSING 2 T
+PROCESSING T
+PROCESSING T
+ROLLING BACK T
+*** NEW WAITING OP: D TESTERER3
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 2
+Lock removed
+Release Rlock
+release lock transaction: 2
+release lock transaction: 2
+Handle result: 1
+WAITING OP: D TESTERER2
+Record delete on 1, TESTERER2
+LSM Deleting...
+TXID: 0::R TESTERER0 10
+TXID: 1::R TESTERER1 10
+Called RLOCK
+FOUND TABLE TESTERER1
+Acquire Lock data: TESTERER1 Lock Type: T-READ
+Acquire Lock data: TESTERER1_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER2 10
+TXID: 3::R TESTERER3 10
+TXID: 4::R TESTERER4 10
+TXID: 5::R TESTERER5 10
+TXID: 6::R TESTERER6 10
+TXID: 7::R TESTERER7 10
+TXID: 8::R TESTERER8 10
+TXID: 9::R TESTERER9 10
+TXID: 0::R TESTERER0 10
+TXID: 1::R TESTERER1 10
+Called RLOCK
+FOUND TABLE TESTERER1
+Acquire Lock data: TESTERER1 Lock Type: T-READ
+Acquire Lock data: TESTERER1_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER2 10
+TXID: 3::R TESTERER3 10
+TXID: 4::R TESTERER4 10
+TXID: 5::R TESTERER5 10
+TXID: 6::R TESTERER6 10
+TXID: 7::R TESTERER7 10
+TXID: 8::R TESTERER8 10
+TXID: 9::R TESTERER9 10
+Running DeadLock Detection after command 60processed
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+adding new 8 to the graph
+Add Edge between 8and 9
+adding new 9 to the graph
+Add Edge between 9and 0
+adding new 0 to the graph
+Add Edge between 0and 1
+adding new 1 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+Add Edge between 6and 7
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 0 1 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 : 0
+0 : 1
+1 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 0 1 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 : 0
+0 : 1
+1 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, resume normally
+TXID: 0::R TESTERER0 10
+TXID: 1::R TESTERER1 10
+Called RLOCK
+FOUND TABLE TESTERER1
+Acquire Lock data: TESTERER1 Lock Type: T-READ
+Acquire Lock data: TESTERER1_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER2 10
+TXID: 3::R TESTERER3 10
+TXID: 4::R TESTERER4 10
+TXID: 5::R TESTERER5 10
+TXID: 6::R TESTERER6 10
+TXID: 7::R TESTERER7 10
+TXID: 8::R TESTERER8 10
+TXID: 9::R TESTERER9 10
+TXID: 0::R TESTERER0 10
+TXID: 1::R TESTERER1 10
+Called RLOCK
+FOUND TABLE TESTERER1
+Acquire Lock data: TESTERER1 Lock Type: T-READ
+Acquire Lock data: TESTERER1_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::R TESTERER2 10
+TXID: 3::R TESTERER3 10
+TXID: 4::R TESTERER4 10
+TXID: 5::R TESTERER5 10
+TXID: 6::R TESTERER6 10
+TXID: 7::R TESTERER7 10
+TXID: 8::R TESTERER8 10
+TXID: 9::R TESTERER9 10
+Running DeadLock Detection after command 80processed
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+adding new 8 to the graph
+Add Edge between 8and 9
+adding new 9 to the graph
+Add Edge between 9and 0
+adding new 0 to the graph
+Add Edge between 0and 1
+adding new 1 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+Add Edge between 6and 7
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 0 1 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 : 0
+0 : 1
+1 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 0 1 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 : 0
+0 : 1
+1 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, resume normally
+TXID: 0::C
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+adding new 8 to the graph
+Add Edge between 8and 9
+adding new 9 to the graph
+Add Edge between 9and 0
+adding new 0 to the graph
+Add Edge between 0and 1
+adding new 1 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+Add Edge between 6and 7
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 0 1 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 : 0
+0 : 1
+1 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 0 1 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 : 0
+0 : 1
+1 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, resume normally
+TXID: 1::C
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+adding new 8 to the graph
+Add Edge between 8and 9
+adding new 9 to the graph
+Add Edge between 9and 0
+adding new 0 to the graph
+Add Edge between 0and 1
+adding new 1 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+Add Edge between 6and 7
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 0 1 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 : 0
+0 : 1
+1 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 0 1 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 : 0
+0 : 1
+1 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, resume normally
+COMMIT txid 1 from file index 1
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: 0
+WAITING OP: D TESTERER1
+Record delete on 0, TESTERER1
+LSM Deleting...
+Called RLOCK
+FOUND TABLE TESTERER0
+Acquire Lock data: TESTERER0 Lock Type: T-READ
+Acquire Lock data: TESTERER0_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER0
+Acquire Lock data: TESTERER0 Lock Type: T-READ
+Acquire Lock data: TESTERER0_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER0
+Acquire Lock data: TESTERER0 Lock Type: T-READ
+Acquire Lock data: TESTERER0_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER0
+Acquire Lock data: TESTERER0 Lock Type: T-READ
+Acquire Lock data: TESTERER0_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+adding new 8 to the graph
+Add Edge between 8and 9
+adding new 9 to the graph
+Add Edge between 9and 0
+adding new 0 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+Add Edge between 6and 7
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 0 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 : 0
+0 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 0 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 : 0
+0 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 0
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Handle result: NONE
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 9
+WAITING OP: D TESTERER0
+Record delete on 9, TESTERER0
+LSM Deleting...
+Called RLOCK
+FOUND TABLE TESTERER9
+Acquire Lock data: TESTERER9 Lock Type: T-READ
+Acquire Lock data: TESTERER9_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER9
+Acquire Lock data: TESTERER9 Lock Type: T-READ
+Acquire Lock data: TESTERER9_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER9
+Acquire Lock data: TESTERER9 Lock Type: T-READ
+Acquire Lock data: TESTERER9_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER9
+Acquire Lock data: TESTERER9 Lock Type: T-READ
+Acquire Lock data: TESTERER9_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 2::C
+TXID: 3::R TESTERER3 10
+TXID: 4::C
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+adding new 8 to the graph
+Add Edge between 8and 9
+adding new 9 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+Add Edge between 6and 7
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, resume normally
+TXID: 5::C
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+adding new 8 to the graph
+Add Edge between 8and 9
+adding new 9 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+Add Edge between 6and 7
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, resume normally
+TXID: 6::R TESTERER6 10
+TXID: 7::C
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+adding new 8 to the graph
+Add Edge between 8and 9
+adding new 9 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+Add Edge between 6and 7
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, resume normally
+TXID: 8::R TESTERER8 10
+TXID: 9::C
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+adding new 8 to the graph
+Add Edge between 8and 9
+adding new 9 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+Add Edge between 6and 7
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 9 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 : 9
+9 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, resume normally
+COMMIT txid 9 from file index 9
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 9
+Handle result: NONE
+Release Rlock
+release lock transaction: 9
+release lock transaction: 9
+Handle result: 8
+WAITING OP: D TESTERER9
+Record delete on 8, TESTERER9
+LSM Deleting...
+Called RLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-READ
+Acquire Lock data: TESTERER8_10 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-READ
+Acquire Lock data: TESTERER8_10 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-READ
+Acquire Lock data: TESTERER8_10 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-READ
+Acquire Lock data: TESTERER8_10 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER8
+Acquire Lock data: TESTERER8 Lock Type: T-READ
+Acquire Lock data: TESTERER8_10 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+TXID: 3::C
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+adding new 8 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+Add Edge between 6and 7
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, resume normally
+TXID: 6::C
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+adding new 8 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+Add Edge between 6and 7
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, resume normally
+TXID: 8::C
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+Add Edge between 7and 8
+adding new 7 to the graph
+adding new 8 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+Add Edge between 6and 7
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 7 8 5 6
+Adjacents:
+3 : 4
+4 : 5
+7 : 8
+8 :
+5 : 6
+6 : 7
+*************************
+No deadlocks detected, resume normally
+COMMIT txid 8 from file index 8
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 8
+Handle result: NONE
+Release Rlock
+release lock transaction: 8
+Removing last Lock on a data element: TESTERER8_10
+release lock transaction: 8
+Handle result: 7
+WAITING OP: D TESTERER8
+Record delete on 7, TESTERER8
+LSM Deleting...
+Called RLOCK
+FOUND TABLE TESTERER7
+Acquire Lock data: TESTERER7 Lock Type: T-READ
+Acquire Lock data: TESTERER7_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER7
+Acquire Lock data: TESTERER7 Lock Type: T-READ
+Acquire Lock data: TESTERER7_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER7
+Acquire Lock data: TESTERER7 Lock Type: T-READ
+Acquire Lock data: TESTERER7_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER7
+Acquire Lock data: TESTERER7 Lock Type: T-READ
+Acquire Lock data: TESTERER7_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+Add Edge between 6and 7
+adding new 7 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4 5 6 7
+Adjacents:
+3 : 4
+4 : 5
+5 : 6
+6 : 7
+7 :
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 5 6 7
+Adjacents:
+3 : 4
+4 : 5
+5 : 6
+6 : 7
+7 :
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 7
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 7
+Handle result: NONE
+Release Rlock
+release lock transaction: 7
+Removing last Lock on a data element: TESTERER7_10
+release lock transaction: 7
+Handle result: 6
+WAITING OP: D TESTERER7
+Record delete on 6, TESTERER7
+LSM Deleting...
+Called RLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-READ
+Acquire Lock data: TESTERER6_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-READ
+Acquire Lock data: TESTERER6_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-READ
+Acquire Lock data: TESTERER6_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-READ
+Acquire Lock data: TESTERER6_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER6
+Acquire Lock data: TESTERER6 Lock Type: T-READ
+Acquire Lock data: TESTERER6_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+Add Edge between 5and 6
+adding new 5 to the graph
+adding new 6 to the graph
+Add Edge between 4and 5
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4 5 6
+Adjacents:
+3 : 4
+4 : 5
+5 : 6
+6 :
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 5 6
+Adjacents:
+3 : 4
+4 : 5
+5 : 6
+6 :
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 6
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 6
+Handle result: NONE
+Release Rlock
+release lock transaction: 6
+release lock transaction: 6
+Handle result: 5
+WAITING OP: D TESTERER6
+Record delete on 5, TESTERER6
+LSM Deleting...
+Called RLOCK
+FOUND TABLE TESTERER5
+Acquire Lock data: TESTERER5 Lock Type: T-READ
+Acquire Lock data: TESTERER5_10 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER5
+Acquire Lock data: TESTERER5 Lock Type: T-READ
+Acquire Lock data: TESTERER5_10 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER5
+Acquire Lock data: TESTERER5 Lock Type: T-READ
+Acquire Lock data: TESTERER5_10 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER5
+Acquire Lock data: TESTERER5 Lock Type: T-READ
+Acquire Lock data: TESTERER5_10 Lock Type: T-READ
+testing collison
+LSM Reading...
+Table not found. Aborting.
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+Add Edge between 4and 5
+adding new 5 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4 5
+Adjacents:
+3 : 4
+4 : 5
+5 :
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4 5
+Adjacents:
+3 : 4
+4 : 5
+5 :
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 5
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 5
+Handle result: NONE
+Release Rlock
+release lock transaction: 5
+Removing last Lock on a data element: TESTERER5_10
+release lock transaction: 5
+Handle result: 4
+WAITING OP: D TESTERER5
+Record delete on 4, TESTERER5
+LSM Deleting...
+Called RLOCK
+FOUND TABLE TESTERER4
+Acquire Lock data: TESTERER4 Lock Type: T-READ
+testing collison
+Acquire Lock data: TESTERER4_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER4
+Acquire Lock data: TESTERER4 Lock Type: T-READ
+testing collison
+Acquire Lock data: TESTERER4_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER4
+Acquire Lock data: TESTERER4 Lock Type: T-READ
+testing collison
+Acquire Lock data: TESTERER4_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER4
+Acquire Lock data: TESTERER4 Lock Type: T-READ
+testing collison
+Acquire Lock data: TESTERER4_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Add Edge between 3and 4
+adding new 3 to the graph
+adding new 4 to the graph
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+3 4
+Adjacents:
+3 : 4
+4 :
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+3 4
+Adjacents:
+3 : 4
+4 :
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 4
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 4
+Removing last Lock on a data element: TESTERER5
+Handle result: NONE
+Release Rlock
+release lock transaction: 4
+release lock transaction: 4
+Handle result: 3
+WAITING OP: D TESTERER4
+Record delete on 3, TESTERER4
+LSM Deleting...
+Called RLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-READ
+Acquire Lock data: TESTERER3_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-READ
+Acquire Lock data: TESTERER3_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-READ
+Acquire Lock data: TESTERER3_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-READ
+Acquire Lock data: TESTERER3_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+Called RLOCK
+FOUND TABLE TESTERER3
+Acquire Lock data: TESTERER3 Lock Type: T-READ
+Acquire Lock data: TESTERER3_10 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+WFG before detecting deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+WFG after solving possible deadlocks:
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, resume normally
+Running Delayed Commit for ID: 3
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 3
+Removing last Lock on a data element: TESTERER4
+Handle result: NONE
+Release Rlock
+release lock transaction: 3
+release lock transaction: 3
+Removing last Lock on a data element: TESTERER3
+Handle result: NONE
+
+**********************************************************
+Statistics:
+Commands:
+Total: 93
+Committed: 87
+Aborted: 6
+Percantage of Success: 93.5484%
+
+Reads:
+Total: 63
+Committed: 58
+Aborted: 5
+Percantage of Success: 92.0635%
+
+Writes:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+MReads:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Erase:
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Deletes:
+Total: 10
+Committed: 9
+Aborted: 1
+Percantage of Success: 90%
+
+
+**********************************************************
+Done Printing Transaction List

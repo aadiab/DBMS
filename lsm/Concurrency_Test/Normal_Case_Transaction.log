@@ -1,0 +1,781 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LOST UPDATE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+W-E (Write.txt, erase.txt)
+Expected: write lock is granted and run immediately. Erase can’t acquire the lock and waits until the first transaction commits. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_13 Lock Type: T-WRITE
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+TXID: 1::E TESTERER 13
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_13 Lock Type: T-ERASE
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: E TESTERER 13
+LSM Erasing...
+Pushing record: ID: 13 Name:  Phone: 
+(N: 1) Inserting record: ID: 13 Name:  Phone: 
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Erasing message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+W-D (Write.txt, delete.txt)
+Expected: Write lock is granted and runs immediately. Delete can’t acquire the lock and waits to run until the first transaction is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_13 Lock Type: T-WRITE
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+TXID: 1::D TESTERER
+Called DLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: D TESTERER
+LSM Deleting...
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Deleting message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+W-W (Write.txt, write2.txt)
+Expected: Write lock is granted and runs immediately. The second write can’t acquire the lock and waits to run until the first write is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_13 Lock Type: T-WRITE
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+TXID: 1::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_13 Lock Type: T-WRITE
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: W TESTERER (13, John, 412-111-2222)
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 1) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Writing message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+E-D (Erase.txt, delete.txt)
+Expected: Erase lock is granted and runs immediately. The delete can’t acquire it’s lock and waits to run until the erase is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::E TESTERER 13
+Called ELOCK
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_13 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::D TESTERER
+Called DLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: D TESTERER
+LSM Deleting...
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Deleting message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+E-E (Erase.txt, erase2.txt)
+Expected: The first erase lock is granted and runs immediately. The second erase can’t acquire it’s lock and waits to run until the first erase is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::E TESTERER 13
+Called ELOCK
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_13 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::E TESTERER 13
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_13 Lock Type: T-ERASE
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: E TESTERER 13
+LSM Erasing...
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Erasing message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+E-W (Erase.txt, write.txt)
+Expected: Erase lock is granted and runs immediately. The write can’t acquire it’s lock and waits to run until the erase is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::E TESTERER 13
+Called ELOCK
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_13 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_13 Lock Type: T-WRITE
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: W TESTERER (13, John, 412-111-2222)
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Writing message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+D-W (Delete.txt, write.txt)
+Expected: The delete lock is granted and runs immediately. The write can’t acquire it’s lock and waits to run until the delete is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::D TESTERER
+Called DLOCK
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Acquire Lock data: TESTERER_13 Lock Type: T-WRITE
+Handle result: 1
+WAITING OP: W TESTERER (13, John, 412-111-2222)
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Writing message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+D-E (Delete.txt, erase.txt)
+Expected: The delete lock is granted and runs immediately. The erase can’t acquire it’s lock and waits to run until the delete is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::D TESTERER
+Called DLOCK
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::E TESTERER 13
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Acquire Lock data: TESTERER_13 Lock Type: T-ERASE
+Handle result: 1
+WAITING OP: E TESTERER 13
+LSM Erasing...
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Erasing message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+D-D (Delete.txt, delete2.txt)
+Expected: The first delete lock is granted and runs immediately. The second delete can’t acquire it’s lock and waits to run until the first delete is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::D TESTERER
+Called DLOCK
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::D TESTERER
+Called DLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Handle result: 1
+WAITING OP: D TESTERER
+LSM Deleting...
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Deleting message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+DIRTY READS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+W-R (write.txt, read.txt)
+Expected: Write lock is granted. Read will wait until the first transaction is committed. Afterwards the release lock will start the next transaction. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_13 Lock Type: T-WRITE
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+TXID: 1::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: R TESTERER 13
+LSM Reading...
+Finding record with ID: 13
+Found record:
+	ID: 13 Name: John Phone: 412-111-2222
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Reading message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+D-R (Delete.txt, read.txt)
+Expected: The delete lock is granted and runs immediately. The read can’t acquire it’s lock and waits to run until the delete is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::D TESTERER
+Called DLOCK
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+Handle result: 1
+WAITING OP: R TESTERER 13
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Reading message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+D-M (Delete.txt, mread.txt)
+Expected: The delete lock is granted and runs immediately. The mread can’t acquire it’s lock and waits to run until the delete is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::D TESTERER
+Called DLOCK
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+LSM Deleting...
+TXID: 1::M TESTERER 412
+Called MLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-MREAD
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Handle result: 1
+WAITING OP: M TESTERER 412
+LSM MReading...
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Mlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Mreading message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+W-M (Write.txt, Mread.txt)
+Expected: Write lock is granted and runs immediately. Mread can’t acquire the lock and waits to run until the first transaction is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_13 Lock Type: T-WRITE
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+TXID: 1::M TESTERER 412
+Called MLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-MREAD
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: M TESTERER 412
+LSM MReading...
+Got these:
+	ID: 13 Name: John Phone: 412-111-2222
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Mlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Mreading message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+E-R (Erase.txt, read.txt)
+Expected: Erase lock is granted and run immediately. The read can’t acquire it’s lock and waits to run until the erase is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::E TESTERER 13
+Called ELOCK
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_13 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: R TESTERER 13
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Reading message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+E-M (Erase.txt, Mread.txt)
+Expected: Erase lock is granted and runs immediately. The mread can’t acquire it’s lock and waits to run until the erase is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::E TESTERER 13
+Called ELOCK
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_13 Lock Type: T-ERASE
+LSM Erasing...
+TXID: 1::M TESTERER 412
+Called MLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-MREAD
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Elock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: M TESTERER 412
+LSM MReading...
+TXID: 1::C
+COMMIT Erasing txid 1 from file index 1
+Release Mlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM MReading message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+NON-REPEATABLE READS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+R-W-R (nonrepeatable_read.txt, write.txt)
+Expected: Read lock is granted and runs immediately. Write can't acquire the lock and waits until the read is committed.  
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::R TESTERER 13
+Called RLOCK
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+Acquire Lock data: TESTERER_13 Lock Type: T-WRITE
+TXID: 0::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::C
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: W TESTERER (13, John, 412-111-2222)
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+Running Delayed Commit
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Writing message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+R-E-R (nonrepeatable_read.txt, erase.txt)
+Expected: Read lock is granted and runs immediately. Erase can't acquire the lock and waits until the read is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::R TESTERER 13
+Called RLOCK
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::E TESTERER 13
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+Acquire Lock data: TESTERER_13 Lock Type: T-ERASE
+TXID: 0::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::C
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: E TESTERER 13
+LSM Erasing...
+Running Delayed Commit
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Erasing message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+R-D-R (nonrepeatable_read.txt, delete.txt)
+Expected: Read lock is granted and runs immediately. Delete can't acquire the lock and waits until the read is committed.  
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::R TESTERER 13
+Called RLOCK
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::D TESTERER
+Called DLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+TXID: 0::R TESTERER 13
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-READ
+Acquire Lock data: TESTERER_13 Lock Type: T-READ
+LSM Reading...
+Table not found. Aborting.
+TXID: 1::C
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Rlock
+release lock transaction: 0
+release lock transaction: 0
+Handle result: 1
+WAITING OP: D TESTERER
+LSM Deleting...
+Running Delayed Commit
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Deleting message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+M-W-M (nonrepeatable_mread.txt, write.txt)
+Expected: Mread lock is granted and runs immediately. Write can't acquire the lock and waits until the mread is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::M TESTERER 412
+Called MLOCK
+Acquire Lock data: TESTERER Lock Type: T-MREAD
+LSM MReading...
+TXID: 1::W TESTERER (13, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-WRITE
+TXID: 0::M TESTERER 412
+Called MLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-MREAD
+LSM MReading...
+TXID: 1::C
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Mlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Acquire Lock data: TESTERER_13 Lock Type: T-WRITE
+Handle result: 1
+WAITING OP: W TESTERER (13, John, 412-111-2222)
+Got record :ID: 13 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 13 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 13 Name: John Phone: 412-111-2222
+Running Delayed Commit
+Release Wlock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Writing message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+M-E-M (nonrepeatable_mread.txt, erase.txt)
+Expected: Mread lock is granted and runs immediately. Erase can't acquire the lock and waits until the mread is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::M TESTERER 412
+Called MLOCK
+Acquire Lock data: TESTERER Lock Type: T-MREAD
+LSM MReading...
+TXID: 1::E TESTERER 13
+Called ELOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-ERASE
+TXID: 0::M TESTERER 412
+Called MLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-MREAD
+LSM MReading...
+TXID: 1::C
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Mlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Acquire Lock data: TESTERER_13 Lock Type: T-ERASE
+Handle result: 1
+WAITING OP: E TESTERER 13
+LSM Erasing...
+Running Delayed Commit
+Release Elock
+release lock transaction: 1
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Erasing message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+M-D-M (nonrepeatable_mread.txt, delete.txt)
+Expected: Mread lock is granted and runs immediately. Delete can't acquire the lock and waits until the mread is committed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+TXID: 0::M TESTERER 412
+Called MLOCK
+Acquire Lock data: TESTERER Lock Type: T-MREAD
+LSM MReading...
+TXID: 1::D TESTERER
+Called DLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-DELETE
+TXID: 0::M TESTERER 412
+Called MLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: T-MREAD
+LSM MReading...
+TXID: 1::C
+TXID: 0::C
+COMMIT Erasing txid 0 from file index 0
+Release Mlock
+Releasing MREAD or DELETE lock
+release lock transaction: 0
+Handle result: 1
+WAITING OP: D TESTERER
+LSM Deleting...
+Running Delayed Commit
+Release Dlock
+Releasing MREAD or DELETE lock
+release lock transaction: 1
+Handle result: NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LSM Deleting message shows up after Transaction 0 has committed so this passed. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

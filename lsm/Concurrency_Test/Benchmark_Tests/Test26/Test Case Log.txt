@@ -1,0 +1,2571 @@
+Multiple Write then Read then Write operations (Process - Process Interactions)
+
+Expected: Everything should run immediately then release its lock. Since process changes are considered committed as soon as they execute, no dirty reads happen. 
+Actual: As expected.
+
+Executed: ./myPTA roundrobin 1000 100 Concurrency_Test/Benchmark_Tests/Test26/test1.txt Concurrency_Test/Benchmark_Tests/Test26/test2.txt Concurrency_Test/Benchmark_Tests/Test26/test3.txt Concurrency_Test/Benchmark_Tests/Test26/test4.txt Concurrency_Test/Benchmark_Tests/Test26/test5.txt Concurrency_Test/Benchmark_Tests/Test26/test6.txt Concurrency_Test/Benchmark_Tests/Test26/test7.txt Concurrency_Test/Benchmark_Tests/Test26/test8.txt Concurrency_Test/Benchmark_Tests/Test26/test9.txt Concurrency_Test/Benchmark_Tests/Test26/test10.txt 
+
+BEGIN Adding txid 0 to file index 0
+BEGIN Adding txid 1 to file index 1
+BEGIN Adding txid 2 to file index 2
+BEGIN Adding txid 3 to file index 3
+BEGIN Adding txid 4 to file index 4
+BEGIN Adding txid 5 to file index 5
+BEGIN Adding txid 6 to file index 6
+BEGIN Adding txid 7 to file index 7
+BEGIN Adding txid 8 to file index 8
+BEGIN Adding txid 9 to file index 9
+TXID: 0::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: P-WRITE
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+New table: TESTERER
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 0) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 1::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_1 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 1
+Found record:
+	ID: 1 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 2::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: P-WRITE
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 1) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 3::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_1 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 1
+Found record:
+	ID: 1 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 4::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: P-WRITE
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 1) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 5::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_1 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 1
+Found record:
+	ID: 1 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 6::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: P-WRITE
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 1) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 7::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_1 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 1
+Found record:
+	ID: 1 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 8::W TESTERER (1, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_1 Lock Type: P-WRITE
+Got record :ID: 1 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 1 Name: John Phone: 412-111-2222
+(N: 1) Inserting record: ID: 1 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 9::R TESTERER 1
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_1 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 1
+Found record:
+	ID: 1 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Running DeadLock Detection after command 20processed
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::W TESTERER (2, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: P-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 1) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 1::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_2 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 2
+Found record:
+	ID: 2 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 2::W TESTERER (2, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: P-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 2) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 3::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_2 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 2
+Found record:
+	ID: 2 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 4::W TESTERER (2, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: P-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 2) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 5::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_2 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 2
+Found record:
+	ID: 2 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 6::W TESTERER (2, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: P-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 2) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 7::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_2 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 2
+Found record:
+	ID: 2 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 8::W TESTERER (2, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_2 Lock Type: P-WRITE
+Got record :ID: 2 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 2 Name: John Phone: 412-111-2222
+(N: 2) Inserting record: ID: 2 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 9::R TESTERER 2
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_2 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 2
+Found record:
+	ID: 2 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 0::W TESTERER (3, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: P-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 2) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 1::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_3 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 3
+Found record:
+	ID: 3 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 2::W TESTERER (3, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: P-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 3) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 3::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_3 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 3
+Found record:
+	ID: 3 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 4::W TESTERER (3, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: P-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 3) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 5::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_3 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 3
+Found record:
+	ID: 3 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 6::W TESTERER (3, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: P-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 3) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 7::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_3 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 3
+Found record:
+	ID: 3 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 8::W TESTERER (3, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_3 Lock Type: P-WRITE
+Got record :ID: 3 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 3 Name: John Phone: 412-111-2222
+(N: 3) Inserting record: ID: 3 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 9::R TESTERER 3
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_3 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 3
+Found record:
+	ID: 3 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Running DeadLock Detection after command 40processed
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::W TESTERER (4, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: P-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 3) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 1::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_4 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 4
+Found record:
+	ID: 4 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 2::W TESTERER (4, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: P-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 4) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 3::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_4 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 4
+Found record:
+	ID: 4 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 4::W TESTERER (4, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: P-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 4) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 5::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_4 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 4
+Found record:
+	ID: 4 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 6::W TESTERER (4, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: P-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 4) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 7::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_4 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 4
+Found record:
+	ID: 4 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 8::W TESTERER (4, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_4 Lock Type: P-WRITE
+Got record :ID: 4 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 4 Name: John Phone: 412-111-2222
+(N: 4) Inserting record: ID: 4 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 9::R TESTERER 4
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_4 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 4
+Found record:
+	ID: 4 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 0::W TESTERER (5, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: P-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 4) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 1::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_5 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 5
+Found record:
+	ID: 5 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 2::W TESTERER (5, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: P-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 5) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 3::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_5 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 5
+Found record:
+	ID: 5 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 4::W TESTERER (5, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: P-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 5) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 5::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_5 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 5
+Found record:
+	ID: 5 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 6::W TESTERER (5, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: P-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 5) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 7::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_5 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 5
+Found record:
+	ID: 5 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 8::W TESTERER (5, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_5 Lock Type: P-WRITE
+Got record :ID: 5 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 5 Name: John Phone: 412-111-2222
+(N: 5) Inserting record: ID: 5 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 9::R TESTERER 5
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_5 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 5
+Found record:
+	ID: 5 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Running DeadLock Detection after command 60processed
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::W TESTERER (6, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: P-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 5) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 1::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_6 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 6
+Found record:
+	ID: 6 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 2::W TESTERER (6, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: P-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 6) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 3::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_6 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 6
+Found record:
+	ID: 6 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 4::W TESTERER (6, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: P-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 6) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 5::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_6 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 6
+Found record:
+	ID: 6 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 6::W TESTERER (6, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: P-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 6) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 7::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_6 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 6
+Found record:
+	ID: 6 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 8::W TESTERER (6, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_6 Lock Type: P-WRITE
+Got record :ID: 6 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 6 Name: John Phone: 412-111-2222
+(N: 6) Inserting record: ID: 6 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 9::R TESTERER 6
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_6 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 6
+Found record:
+	ID: 6 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 0::W TESTERER (7, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: P-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 6) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 1::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_7 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 7
+Found record:
+	ID: 7 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 2::W TESTERER (7, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: P-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 7) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 3::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_7 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 7
+Found record:
+	ID: 7 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 4::W TESTERER (7, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: P-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 7) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 5::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_7 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 7
+Found record:
+	ID: 7 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 6::W TESTERER (7, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: P-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 7) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 7::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_7 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 7
+Found record:
+	ID: 7 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 8::W TESTERER (7, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_7 Lock Type: P-WRITE
+Got record :ID: 7 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 7 Name: John Phone: 412-111-2222
+(N: 7) Inserting record: ID: 7 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 9::R TESTERER 7
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_7 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 7
+Found record:
+	ID: 7 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Running DeadLock Detection after command 80processed
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::W TESTERER (8, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: P-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 7) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 1::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_8 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 8
+Found record:
+	ID: 8 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 2::W TESTERER (8, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: P-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 8) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 3::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_8 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 8
+Found record:
+	ID: 8 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 4::W TESTERER (8, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: P-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 8) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 5::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_8 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 8
+Found record:
+	ID: 8 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 6::W TESTERER (8, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: P-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 8) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 7::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_8 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 8
+Found record:
+	ID: 8 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 8::W TESTERER (8, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_8 Lock Type: P-WRITE
+Got record :ID: 8 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 8 Name: John Phone: 412-111-2222
+(N: 8) Inserting record: ID: 8 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 9::R TESTERER 8
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_8 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 8
+Found record:
+	ID: 8 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 0::W TESTERER (9, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: P-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 8) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 1::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_9 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 9
+Found record:
+	ID: 9 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 2::W TESTERER (9, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: P-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 9) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 3::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_9 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 9
+Found record:
+	ID: 9 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 4::W TESTERER (9, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: P-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 9) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 5::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_9 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 9
+Found record:
+	ID: 9 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 6::W TESTERER (9, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: P-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 9) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 7::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_9 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 9
+Found record:
+	ID: 9 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 8::W TESTERER (9, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_9 Lock Type: P-WRITE
+Got record :ID: 9 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 9 Name: John Phone: 412-111-2222
+(N: 9) Inserting record: ID: 9 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 9::R TESTERER 9
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_9 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 9
+Found record:
+	ID: 9 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Running DeadLock Detection after command 100processed
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::W TESTERER (10, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: P-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 9) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 1::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_10 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 10
+Found record:
+	ID: 10 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 2::W TESTERER (10, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: P-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 10) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 3::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_10 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 10
+Found record:
+	ID: 10 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 4::W TESTERER (10, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: P-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 10) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 5::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_10 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 10
+Found record:
+	ID: 10 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 6::W TESTERER (10, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: P-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 10) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 7::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_10 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 10
+Found record:
+	ID: 10 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 8::W TESTERER (10, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_10 Lock Type: P-WRITE
+Got record :ID: 10 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 10 Name: John Phone: 412-111-2222
+(N: 10) Inserting record: ID: 10 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 9::R TESTERER 10
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_10 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 10
+Found record:
+	ID: 10 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 0::W TESTERER (11, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: P-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 10) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 0
+release lock transaction: 0
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 1::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_11 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 11
+Found record:
+	ID: 11 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 1
+release lock transaction: 1
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 2::W TESTERER (11, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: P-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 2
+release lock transaction: 2
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 3::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_11 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 11
+Found record:
+	ID: 11 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 3
+release lock transaction: 3
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 4::W TESTERER (11, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: P-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 4
+release lock transaction: 4
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 5::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_11 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 11
+Found record:
+	ID: 11 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 5
+release lock transaction: 5
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 6::W TESTERER (11, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: P-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 6
+release lock transaction: 6
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 7::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_11 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 11
+Found record:
+	ID: 11 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 7
+release lock transaction: 7
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 8::W TESTERER (11, John, 412-111-2222)
+Called WLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-WRITE
+Acquire Lock data: TESTERER_11 Lock Type: P-WRITE
+Got record :ID: 11 Name: John Phone: 412-111-2222
+LSM Writing...
+Pushing record: ID: 11 Name: John Phone: 412-111-2222
+(N: 11) Inserting record: ID: 11 Name: John Phone: 412-111-2222
+Release Wlock
+release lock transaction: 8
+release lock transaction: 8
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+TXID: 9::R TESTERER 11
+Called RLOCK
+FOUND TABLE TESTERER
+Acquire Lock data: TESTERER Lock Type: P-READ
+Acquire Lock data: TESTERER_11 Lock Type: P-READ
+LSM Reading...
+Finding record with ID: 11
+Found record:
+	ID: 11 Name: John Phone: 412-111-2222
+Release Rlock
+release lock transaction: 9
+release lock transaction: 9
+Process Release Result: NONE Expected: NONE 
+Handle result: NONE
+Running DeadLock Detection after command 120processed
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+TXID: 0::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+COMMIT txid 0 from file index 0
+TXID: 1::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+COMMIT txid 1 from file index 1
+TXID: 2::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+COMMIT txid 2 from file index 2
+TXID: 3::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+COMMIT txid 3 from file index 3
+TXID: 4::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+COMMIT txid 4 from file index 4
+TXID: 5::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+COMMIT txid 5 from file index 5
+TXID: 6::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+COMMIT txid 6 from file index 6
+TXID: 7::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+COMMIT txid 7 from file index 7
+TXID: 8::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+COMMIT txid 8 from file index 8
+TXID: 9::C
+Processing Bucket: 0
+Processing Bucket: 1
+Processing Bucket: 2
+Processing Bucket: 3
+Processing Bucket: 4
+Processing Bucket: 5
+Processing Bucket: 6
+Processing Bucket: 7
+Processing Bucket: 8
+Processing Bucket: 9
+Processing Bucket: 10
+Processing Bucket: 11
+Processing Bucket: 12
+Processing Bucket: 13
+Processing Bucket: 14
+Processing Bucket: 15
+Processing Bucket: 16
+Processing Bucket: 17
+Processing Bucket: 18
+Processing Bucket: 19
+Processing Bucket: 20
+Processing Bucket: 21
+Processing Bucket: 22
+Processing Bucket: 23
+Processing Bucket: 24
+Processing Bucket: 25
+Processing Bucket: 26
+Processing Bucket: 27
+Processing Bucket: 28
+Processing Bucket: 29
+Processing Bucket: 30
+Processing Bucket: 31
+Processing Bucket: 32
+Processing Bucket: 33
+Processing Bucket: 34
+Processing Bucket: 35
+Processing Bucket: 36
+Processing Bucket: 37
+Processing Bucket: 38
+Processing Bucket: 39
+Processing Bucket: 40
+Processing Bucket: 41
+Processing Bucket: 42
+Processing Bucket: 43
+Processing Bucket: 44
+Processing Bucket: 45
+Processing Bucket: 46
+Processing Bucket: 47
+Processing Bucket: 48
+Processing Bucket: 49
+Print WFG: 
+
+*************************
+Transactions:
+
+Adjacents:
+*************************
+No deadlocks detected, return.
+No deadlocks detected, resume normally
+COMMIT txid 9 from file index 9
+
+**********************************************************
+Statistics: 
+Commands: 
+Total: 130
+Committed: 130
+Aborted: 0
+Percantage of Success: 100%
+
+Reads: 
+Total: 55
+Committed: 55
+Aborted: 0
+Percantage of Success: 1%
+
+Writes: 
+Total: 55
+Committed: 55
+Aborted: 0
+Percantage of Success: 1%
+
+MReads: 
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Erase: 
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+Deletes: 
+Total: 0
+Committed: 0
+Aborted: 0
+Percantage of Success: 0%
+
+
+**********************************************************
+
+
+
